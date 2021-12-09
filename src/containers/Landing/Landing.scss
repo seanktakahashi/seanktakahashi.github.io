@@ -1,0 +1,50 @@
+@use "../../styles/variables";
+
+#landing-container {
+  overflow: hidden;
+}
+
+#landing-container::after {
+  content: ' ';
+  display: block;
+  position: fixed;
+  z-index: variables.$background-image-layer;
+  opacity: 0.8;
+  /* cover entire screen */
+  left: 0;      top: 0;
+  height: 100%; width: 100%;
+  /* flower background image */
+  background-image: variables.$gas-station-img;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-color: black;
+  background-attachment: fixed;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+#content-container {
+  display: flex;
+}
+
+#content-container .content-tab {
+  margin: 1em;
+  padding: 50px;
+  text-align: center;
+  color: variables.$font-color;
+  h1 {
+    position: relative;
+    z-index: variables.$content-layer;
+    margin: 1em;
+  }
+  &::after {
+    @include variables.black-background-square;
+    /* cover back of content tab */
+    position: relative;
+    top: -5.5em;
+    height: 5em; width: 100%;
+  }
+} 

@@ -10,13 +10,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.[jt]sx?$/, // matches .js, .ts, and .tsx files
+        test: /\.[jt]sx?$/i, // matches .js, .ts, and .tsx files
         loader: 'babel-loader', // uses babel-loader for the specified file types (no ts-loader needed)
-        exclude: /node_modules/, 
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/, // matches .css files only (i.e. not .scss, etc)
-        use: ['style-loader', 'css-loader'], 
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.s[ac]ss$/i, // matches .css files only (i.e. not .scss, etc)
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
       },
     ],
   },
@@ -30,6 +41,8 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'public/'),
     },
+    // https://www.robinwieruch.de/webpack-react-router/
+    historyApiFallback: true, // allow reactrouterv6 to find paths besides /
     port: 3000
   },
   plugins: [],

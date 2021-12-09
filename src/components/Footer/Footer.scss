@@ -1,0 +1,24 @@
+#footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  height: 5em; 
+  width: 100%;
+  flex-direction: row-reverse;
+  &::after {
+    content: ' ';
+    position: absolute;
+    background-color: black;
+    z-index: 0;
+    height: 5em; width: 100%;
+  }
+}
+
+.footer-elem {
+  margin: auto 2vh auto 2vh;
+  color: white;
+  text-decoration: none;
+  vertical-align: center;
+  z-index: 2;
+}
