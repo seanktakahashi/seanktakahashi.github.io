@@ -10,16 +10,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.[jt]sx?$/i, // matches .js, .ts, and .tsx files
-        loader: 'babel-loader', // uses babel-loader for the specified file types (no ts-loader needed)
+        test: /\.[jt]sx?$/i,
+        loader: 'babel-loader',
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/, // matches .css files only (i.e. not .scss, etc)
+        test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.s[ac]ss$/i, // matches .css files only (i.e. not .scss, etc)
+        test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
           "style-loader",
@@ -28,6 +28,13 @@ module.exports = {
           // Compiles Sass to CSS
           "sass-loader",
         ],
+      },
+      {
+        test: /\.(png|jpe?g|gif|jp2|webp)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+        },
       },
     ],
   },

@@ -15,13 +15,13 @@ export default class SearchBar extends Component {
   }
 
   onChange = e => {
-    this.setState({[e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
     return (
       <form id="search-form" className="header-elem" onSubmit={this.handleSearch}>
-        <input type="text" id="searchText" name="searchText" placeholder="enter a search" onChange={this.onChange}/>
+        <input type="text" id="searchText" name="searchText" placeholder="enter a search" onChange={this.onChange} />
         <button type="submit" className="nav-button"><span>🔍</span></button>
       </form>
     );

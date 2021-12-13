@@ -1,0 +1,27 @@
+@use "../../styles/variables";
+@use "sass:math";
+
+$num-rows: 30;
+$num-columns: 50;
+
+body {
+  margin: 0;
+}
+
+#landing {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.tile {
+  height: math.div(100vw, $num-columns);
+  width: math.div(100vw, $num-columns);
+} 
+
+
