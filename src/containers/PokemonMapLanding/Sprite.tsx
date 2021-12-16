@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { SpriteActions } from './redux/actions';
+import { selectFacing, selectPosition } from './redux/selectors';
 import pikachuDown from './images/sprites/pikachu_down.png';
 import pikachuLeft from './images/sprites/pikachu_left.png';
 import pikachuRight from './images/sprites/pikachu_right.png';
 import pikachuUp from './images/sprites/pikachu_up.png';
-import { Direction, Position } from './types';
+import { Direction } from './types';
 
 type SpriteImages = {
   [Direction.DOWN]: string
@@ -12,7 +15,6 @@ type SpriteImages = {
   [Direction.UP]: string
 }
 
-const initPlace: Position = { i: 0, j: 0 };
 const pikachuImages: SpriteImages = {
   [Direction.DOWN]: pikachuDown,
   [Direction.LEFT]: pikachuLeft,
@@ -20,81 +22,45 @@ const pikachuImages: SpriteImages = {
   [Direction.UP]: pikachuUp,
 };
 
-export default class Sprite extends React.Component {
-  state = {
-    position: initPlace,
-    facing: Direction.DOWN,
-    images: pikachuImages,
-  }
+export default function Sprite() {
+  const dispatch = useDispatch();
+  const facing = useSelector(selectFacing);
+  const position = useSelector(selectPosition);
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKey);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKey);
-  }
-
-  handleKey = (event: KeyboardEvent) => {
-    console.log(event.key);
+  const handleKey = useCallback((event: KeyboardEvent) => {
     switch (event.key) {
       case 'h':
-        this.moveLeft();
+        dispatch(SpriteActions.moveLeft);
         break;
       case 'j':
-        this.moveDown();
+        dispatch(SpriteActions.moveDown);
         break;
       case 'k':
-        this.moveUp();
+        dispatch(SpriteActions.moveUp);
         break;
       case 'l':
-        this.moveRight();
+        dispatch(SpriteActions.moveRight);
         break;
     }
-  }
+  }, [dispatch]);
 
-  moveLeft() {
-    this.setState({
-      position: { i: this.state.position.i, j: this.state.position.j - 1 },
-      facing: Direction.LEFT
-    });
-  }
+  useEffect(() => {
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('keydown', handleKey)
+    }
+  });
 
-  moveDown() {
-    this.setState({
-      position: { i: this.state.position.i + 1, j: this.state.position.j },
-      facing: Direction.DOWN
-    });
-  }
+  const image = useMemo(() => pikachuImages[facing], [facing]);
 
-  moveUp() {
-    this.setState({
-      position: { i: this.state.position.i - 1, j: this.state.position.j },
-      facing: Direction.UP
-    });
-  }
-
-  moveRight() {
-    this.setState({
-      position: { i: this.state.position.i, j: this.state.position.j + 1 },
-      facing: Direction.RIGHT
-    });
-  }
-
-  getImage(): string {
-    return pikachuImages[this.state.facing];
-  }
-
-  render() {
-    return (
-      <div
-        className="sprite"
-        style={{
-          backgroundImage: `url(${this.getImage()})`,
-          top: `${this.state.position.i * 2}vw`,
-          left: `${this.state.position.j * 2}vw`
-        }}
-      />
-    );
-  }
+  return (
+    <div
+      className="sprite"
+      style={{
+        backgroundImage: `url(${image})`,
+        top: `${position.i * 2}vw`,
+        left: `${position.j * 2}vw`
+      }}
+    />
+  );
 }
