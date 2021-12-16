@@ -28,11 +28,9 @@ export default function PokemonMapContainer() {
   }, [M, N]);
 
   return (
-    <>
-      <PokemonMapDrawing
-        pokemonMap={pokemonMap}
-      />
-      <Sprite />
-    </>
+    <PokemonMapDrawing
+      pokemonMap={pokemonMap}
+      sprite={<Sprite />}
+    />
   );
 }

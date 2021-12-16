@@ -1,37 +1,43 @@
-import './PokemonMapLanding.scss';
 import React from 'react';
 import { TileType, getTypeImage } from './constants';
 import { Tile, PokemonMap, Position } from './types';
+import { useSelector } from 'react-redux';
+import { selectPosition } from './redux/selectors';
 
 namespace TileDrawing {
   interface OwnProps {
     type: TileType;
     position: Position;
-    // sprite: Sprite;
+    sprite?: JSX.Element;
   }
   export type Props = OwnProps;
 }
 
-function TileDrawing({ type }: TileDrawing.Props) {
+function TileDrawing({ type, sprite }: TileDrawing.Props) {
   return (
     <div
       className="tile"
       style={{ backgroundImage: `url(${getTypeImage[type]})` }}
     >
-      {/* {samePosition(position, sprite.position) ? buildSprite(sprite) : null} */}
+      {sprite}
     </div>
   );
+}
+
+function equalPosition(pos1: Position, pos2: Position) {
+  return pos1.i === pos2.i && pos1.j === pos2.j;
 }
 
 namespace PokemonMapDrawing {
   interface OwnProps {
     pokemonMap: PokemonMap;
-    // sprite: Sprite;
+    sprite: JSX.Element;
   }
   export type Props = OwnProps;
 }
 
-export default function PokemonMapDrawing({ pokemonMap }: PokemonMapDrawing.Props) {
+export default function PokemonMapDrawing({ pokemonMap, sprite }: PokemonMapDrawing.Props) {
+  const position = useSelector(selectPosition);
   return (
     <React.Fragment>
       {pokemonMap.map(
@@ -42,7 +48,7 @@ export default function PokemonMapDrawing({ pokemonMap }: PokemonMapDrawing.Prop
                 key={`${i},${j}`}
                 type={elem.type}
                 position={{ i, j }}
-              // sprite={sprite}
+                sprite={equalPosition(position, { i, j }) ? sprite : undefined}
               />
             ))}
           </div>

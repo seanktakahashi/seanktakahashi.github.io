@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { SpriteActions } from './redux/actions';
-import { selectFacing, selectPosition } from './redux/selectors';
+import { selectFacing } from './redux/selectors';
 import pikachuDown from './images/sprites/pikachu_down.png';
 import pikachuLeft from './images/sprites/pikachu_left.png';
 import pikachuRight from './images/sprites/pikachu_right.png';
@@ -25,7 +25,6 @@ const pikachuImages: SpriteImages = {
 export default function Sprite() {
   const dispatch = useDispatch();
   const facing = useSelector(selectFacing);
-  const position = useSelector(selectPosition);
 
   const handleKey = useCallback((event: KeyboardEvent) => {
     switch (event.key) {
@@ -58,8 +57,6 @@ export default function Sprite() {
       className="sprite"
       style={{
         backgroundImage: `url(${image})`,
-        top: `${position.i * 2}vw`,
-        left: `${position.j * 2}vw`
       }}
     />
   );
