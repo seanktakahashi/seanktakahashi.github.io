@@ -1,13 +1,7 @@
 import { TileType, isWaterTile } from './constants';
-import { PokemonMap } from './types';
+import { Direction, PokemonMap } from './types';
 
-export enum direction {
-  DOWN,
-  RIGHT,
-  LEFT,
-  UP
-}
-const directions = [direction.DOWN, direction.RIGHT, direction.LEFT, direction.UP];
+const directions = [Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.UP];
 
 // Assume Top is Grass. Right, Left, Bottom are Water
 function selectWaterTile(map: PokemonMap, i: number, j: number): TileType {
@@ -110,44 +104,44 @@ function weightedRandomChoice<T>(arr: Array<T>, changeWeight: number, curr: T, e
   return c;
 }
 
-function getStartingPoint(map: PokemonMap, startingDirection: direction): { i: number, j: number } {
+function getStartingPoint(map: PokemonMap, startingDirection: Direction): { i: number, j: number } {
   const M = map.length;
   const N = map[0].length;
   switch (startingDirection) {
-    case direction.DOWN:
+    case Direction.DOWN:
       return { i: 0, j: Math.floor(Math.random() * N) }
-    case direction.RIGHT:
+    case Direction.RIGHT:
       return { i: Math.floor(Math.random() * M), j: 0 }
-    case direction.LEFT:
+    case Direction.LEFT:
       return { i: Math.floor(Math.random() * M), j: N - 2 }
-    case direction.UP:
+    case Direction.UP:
       return { i: M - 2, j: Math.floor(Math.random() * N) }
     default:
       throw new Error(`unrecognizable direction ${startingDirection}`);
   }
 }
 
-export default function paintRiver(map: PokemonMap, currDirection: direction): void {
+export default function paintRiver(map: PokemonMap, currDirection: Direction): void {
   let { i, j } = getStartingPoint(map, currDirection);
   let done;
   do {
     done = paintWaterSplotch(map, i, j);
     switch (currDirection) {
-      case direction.DOWN:
+      case Direction.DOWN:
         i += 2;
-        currDirection = weightedRandomChoice(directions, 0.3, currDirection, direction.UP);
+        currDirection = weightedRandomChoice(directions, 0.3, currDirection, Direction.UP);
         break;
-      case direction.RIGHT:
+      case Direction.RIGHT:
         j += 2;
-        currDirection = weightedRandomChoice(directions, 0.3, currDirection, direction.LEFT);
+        currDirection = weightedRandomChoice(directions, 0.3, currDirection, Direction.LEFT);
         break;
-      case direction.LEFT:
+      case Direction.LEFT:
         j -= 2;
-        currDirection = weightedRandomChoice(directions, 0.3, currDirection, direction.RIGHT);
+        currDirection = weightedRandomChoice(directions, 0.3, currDirection, Direction.RIGHT);
         break;
-      case direction.UP:
+      case Direction.UP:
         i -= 2;
-        currDirection = weightedRandomChoice(directions, 0.3, currDirection, direction.DOWN);
+        currDirection = weightedRandomChoice(directions, 0.3, currDirection, Direction.DOWN);
         break;
       default:
         throw new Error(`unrecognizable direction ${currDirection}`);

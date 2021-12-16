@@ -19,9 +19,14 @@ body {
   flex-direction: row;
 }
 
-.tile {
+.tile, .sprite {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   height: math.div(100vw, $num-columns);
   width: math.div(100vw, $num-columns);
 } 
 
-
+.sprite {
+  position: absolute;
+}
