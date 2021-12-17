@@ -1,8 +1,8 @@
 import { Direction, Tile, PokemonMap } from '../types';
 import paintRiver from './paintRiver';
 
-const M = 30;
-const N = 50;
+const M = 20;
+const N = 20;
 
 function initPokemonMap(m: number, n: number): PokemonMap {
   return [...Array(m)].map(

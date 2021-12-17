@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { SpriteActions } from './redux/actions';
-import { selectFacing } from './redux/selectors';
-import pikachuDown from './images/sprites/pikachu_down.png';
-import pikachuLeft from './images/sprites/pikachu_left.png';
-import pikachuRight from './images/sprites/pikachu_right.png';
-import pikachuUp from './images/sprites/pikachu_up.png';
-import { Direction } from './types';
+import { SpriteActions } from '../redux/actions';
+import { selectFacing } from '../redux/selectors';
+import pikachuDown from '../images/sprites/pikachu_down.png';
+import pikachuLeft from '../images/sprites/pikachu_left.png';
+import pikachuRight from '../images/sprites/pikachu_right.png';
+import pikachuUp from '../images/sprites/pikachu_up.png';
+import { Direction } from '../types';
 
 type SpriteImages = {
   [Direction.DOWN]: string

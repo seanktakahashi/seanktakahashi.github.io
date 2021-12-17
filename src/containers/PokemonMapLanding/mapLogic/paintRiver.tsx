@@ -1,5 +1,6 @@
-import { TileType, isWaterTile } from '../constants';
+import { TileType } from '../TileType';
 import { Direction, PokemonMap } from '../types';
+import { isWaterTile } from './utils';
 
 const directions = [Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.UP];
 

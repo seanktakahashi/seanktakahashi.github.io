@@ -133,25 +133,6 @@ export enum TileType {
   fenceSE,
 }
 
-export function isWaterTile(tile: TileType): boolean {
-  const waterTiles = [
-    TileType.waterNW,
-    TileType.waterN,
-    TileType.waterNE,
-    TileType.waterW,
-    TileType.water,
-    TileType.waterE,
-    TileType.waterSW,
-    TileType.waterS,
-    TileType.waterSE,
-    TileType.waterInverseNW,
-    TileType.waterInverseNE,
-    TileType.waterInverseSW,
-    TileType.waterInverseSE,
-  ];
-  return waterTiles.includes(tile);
-}
-
 export const getTypeImage = {
   // Assorted
   [TileType.grass]: grass,

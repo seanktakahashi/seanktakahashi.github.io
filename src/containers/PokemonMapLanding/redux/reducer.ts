@@ -1,20 +1,11 @@
 import { combineReducers } from 'redux';
 import { Action, SpriteActions } from './actions';
 import { initialMapState, MapState, SpriteState, StoreState } from './states';
-import { Direction, PokemonMap, Position } from '../types';
-import { isWaterTile } from '../constants';
+import { Direction, PokemonMap } from '../types';
+import { spaceIsObstructed } from '../mapLogic/utils';
 
 function setState<T, K extends keyof T>(state: T, newState: Pick<T, K>): T {
   return Object.assign({}, state, newState);
-}
-
-function spaceIsObstructed(map: PokemonMap, position: Position): boolean {
-  const M = map.length;
-  const N = map[0].length;
-  if (position.i < 0 || position.i >= M || position.j < 0 || position.j >= N) {
-    return true;
-  }
-  return isWaterTile(map[position.i][position.j].type);
 }
 
 function moveSpriteState(spriteState: SpriteState, map: PokemonMap, direction: Direction): SpriteState {
