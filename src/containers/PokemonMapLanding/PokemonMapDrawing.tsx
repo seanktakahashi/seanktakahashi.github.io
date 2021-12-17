@@ -2,7 +2,7 @@ import React from 'react';
 import { TileType, getTypeImage } from './constants';
 import { Tile, PokemonMap, Position } from './types';
 import { useSelector } from 'react-redux';
-import { selectPosition } from './redux/selectors';
+import { selectFacing, selectPosition } from './redux/selectors';
 
 namespace TileDrawing {
   interface OwnProps {
@@ -37,9 +37,10 @@ namespace PokemonMapDrawing {
 }
 
 export default function PokemonMapDrawing({ pokemonMap, sprite }: PokemonMapDrawing.Props) {
-  const position = useSelector(selectPosition);
+  const position = useSelector(selectPosition, equalPosition);
   return (
     <React.Fragment>
+      <div>{position.i}{position.j}</div>
       {pokemonMap.map(
         (row: Tile[], i: number) => (
           <div key={i} className="row">
