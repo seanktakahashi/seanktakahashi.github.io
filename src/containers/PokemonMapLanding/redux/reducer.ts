@@ -38,25 +38,11 @@ function moveSpriteState(spriteState: SpriteState, map: PokemonMap, direction: D
 
 function mapReducer(state: MapState = initialMapState, action: Action): MapState {
   switch (action.type) {
-    case SpriteActions.moveLeft.type:
+    case SpriteActions.move.type:
       return setState(
         state,
-        { spriteState: moveSpriteState(state.spriteState, state.geography, Direction.LEFT) }
-      );
-    case SpriteActions.moveDown.type:
-      return setState(
-        state,
-        { spriteState: moveSpriteState(state.spriteState, state.geography, Direction.DOWN) }
-      );
-    case SpriteActions.moveUp.type:
-      return setState(
-        state,
-        { spriteState: moveSpriteState(state.spriteState, state.geography, Direction.UP) }
-      );
-    case SpriteActions.moveRight.type:
-      return setState(
-        state,
-        { spriteState: moveSpriteState(state.spriteState, state.geography, Direction.RIGHT) }
+        // It seems like this should throw a type error, action.payload is understood as any? not Direction 
+        { spriteState: moveSpriteState(state.spriteState, state.geography, action.payload) }
       );
     default:
       return state;

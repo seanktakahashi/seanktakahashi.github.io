@@ -29,16 +29,16 @@ export default function Sprite() {
   const handleKey = useCallback((event: KeyboardEvent) => {
     switch (event.key) {
       case 'h':
-        dispatch(SpriteActions.moveLeft);
+        dispatch(SpriteActions.createMove(Direction.LEFT));
         break;
       case 'j':
-        dispatch(SpriteActions.moveDown);
+        dispatch(SpriteActions.createMove(Direction.DOWN));
         break;
       case 'k':
-        dispatch(SpriteActions.moveUp);
+        dispatch(SpriteActions.createMove(Direction.UP));
         break;
       case 'l':
-        dispatch(SpriteActions.moveRight);
+        dispatch(SpriteActions.createMove(Direction.RIGHT));
         break;
     }
   }, [dispatch]);

@@ -1,21 +1,19 @@
+import { Direction } from "../types";
+
 export interface Action {
-  type: string
+  readonly type: string
+  readonly payload?: any
 };
 
+export type ActionCreator = (arg: any) => Action;
+
 export namespace SpriteActions {
-  export const moveLeft: Action = {
-    type: 'LEFT',
-  };
-
-  export const moveDown: Action = {
-    type: 'DOWN',
-  };
-
-  export const moveUp: Action = {
-    type: 'UP',
-  };
-
-  export const moveRight: Action = {
-    type: 'RIGHT',
-  };
+  export const move = {
+    type: 'MOVE',
+    payload: Direction
+  }
+  export const createMove: ActionCreator = (direction: Direction): Action => ({
+    type: 'MOVE',
+    payload: direction
+  });
 }
