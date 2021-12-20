@@ -16,7 +16,7 @@ export interface StoreState {
 }
 
 const initialSpriteState: SpriteState = {
-  position: { i: 0, j: 0 },
+  position: { i: 4, j: 2 }, // in front of house
   facing: Direction.DOWN,
 }
 

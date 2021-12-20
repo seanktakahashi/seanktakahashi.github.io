@@ -1,24 +1,32 @@
-import { Direction, Tile, PokemonMap } from '../types';
+import { TileType } from '../TileType';
+import { Tile, PokemonMap } from '../types';
+import { mapSeed } from './mapSeed';
 import paintRiver from './paintRiver';
+import { fixAllTileBorders } from './utils';
 
 const M = 20;
 const N = 20;
 
+function getInitTile(i: number, j: number): Tile {
+  return new Tile(mapSeed.at(i)?.at(j) ? mapSeed[i][j] : TileType.grass);
+}
+
 function initPokemonMap(m: number, n: number): PokemonMap {
   return [...Array(m)].map(
-    () => [...Array(n)].map(
-      () => new Tile()
+    (_elem, i: number) => [...Array(n)].map(
+      (_elem, j: number) => getInitTile(i, j)
     )
   );
 }
 
-function paintPokemonMap(map: PokemonMap): void {
-  paintRiver(map, Direction.DOWN);
-  paintRiver(map, Direction.UP);
+function paintPokemonMap(map: PokemonMap, mapSeed: TileType[][]): void {
+  paintRiver(map, mapSeed);
+  paintRiver(map, mapSeed);
 }
 
 export function createPokemonMap(m: number = M, n: number = N) {
   const map = initPokemonMap(m, n);
-  paintPokemonMap(map);
+  paintPokemonMap(map, mapSeed);
+  fixAllTileBorders(map);
   return map;
 }

@@ -14,7 +14,7 @@ export default function PokemonMapDrawing() {
   const pokemonMap = useSelector(selectMap);
   const sprite = useMemo(() => <Sprite />, []);
   return (
-    <React.Fragment>
+    <>
       {pokemonMap.map(
         (row: Tile[], i: number) => (
           <div key={i} className="row">
@@ -28,6 +28,6 @@ export default function PokemonMapDrawing() {
             ))}
           </div>
         ))}
-    </React.Fragment>
+    </>
   );
 }
