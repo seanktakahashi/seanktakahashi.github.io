@@ -1,11 +1,11 @@
 import { TileType } from '../TileType';
 import { Tile, PokemonMap } from '../types';
-import { mapSeed } from './mapSeed';
+import { mapSeed } from '../tiles/mapSeed';
 import paintRiver from './paintRiver';
 import { fixAllTileBorders } from './utils';
 
-const M = 20;
-const N = 20;
+const M = 25;
+const N = 40;
 
 function getInitTile(i: number, j: number): Tile {
   return new Tile(mapSeed.at(i)?.at(j) ? mapSeed[i][j] : TileType.grass);

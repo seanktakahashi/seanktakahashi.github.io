@@ -1,4 +1,4 @@
-import { marbleTileSet, waterTileSet } from "../tileSets";
+import { fenceTileSet, marbleTileSet, mountainTileSet, waterTileSet } from "../tiles/tileSets";
 import { TileType } from "../TileType";
 import { isWalkwayTileSet, PokemonMap, Position, TileSet, WalkwayTileSet } from "../types";
 
@@ -21,7 +21,6 @@ function isTileTypeInSet(tile: TileType, tileSet: TileSet): boolean {
     tile === tileSet.InverseSE
     : inEnclosureSet;
 }
-
 
 function isWaterTile(tile: TileType): boolean {
   return isTileTypeInSet(tile, waterTileSet);
@@ -49,6 +48,10 @@ function isBuildingTile(tile: TileType): boolean {
   return buildingTiles.includes(tile);
 }
 
+function isEnclosureTile(tile: TileType): boolean {
+  return isTileTypeInSet(tile, mountainTileSet) || isTileTypeInSet(tile, fenceTileSet);
+}
+
 function isAssortedObstruction(tile: TileType): boolean {
   return [
     TileType.box,
@@ -68,7 +71,7 @@ export function spaceIsObstructed(map: PokemonMap, position: Position): boolean 
     return true;
   }
   const tileType = map[position.i][position.j].type;
-  return isWaterTile(tileType) || isBuildingTile(tileType) || isAssortedObstruction(tileType);
+  return isWaterTile(tileType) || isBuildingTile(tileType) || isEnclosureTile(tileType) || isAssortedObstruction(tileType);
 }
 
 function selectTileFromSet(map: PokemonMap, tileSet: WalkwayTileSet, i: number, j: number): TileType {

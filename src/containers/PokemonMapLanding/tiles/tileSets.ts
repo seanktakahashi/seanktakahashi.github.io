@@ -1,5 +1,5 @@
-import { TileType } from "./TileType";
-import { EnclosureTileSet, WalkwayTileSet } from "./types";
+import { TileType } from "../TileType";
+import { EnclosureTileSet, WalkwayTileSet } from "../types";
 
 export const waterTileSet: WalkwayTileSet = {
   NW: TileType.waterNW,
