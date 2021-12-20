@@ -22,7 +22,21 @@ export class Tile {
 
 export type PokemonMap = Tile[][];
 
-export interface TileSet {
+export type TileSet = EnclosureTileSet | WalkwayTileSet;
+
+export interface EnclosureTileSet {
+  NW: TileType,
+  N: TileType,
+  NE: TileType,
+  W: TileType,
+  base: TileType,
+  E: TileType,
+  SW: TileType,
+  S: TileType,
+  SE: TileType,
+}
+
+export interface WalkwayTileSet {
   NW: TileType,
   N: TileType,
   NE: TileType,
@@ -36,4 +50,8 @@ export interface TileSet {
   InverseNE: TileType,
   InverseSW: TileType,
   InverseSE: TileType,
+}
+
+export function isWalkwayTileSet(tileSet: TileSet): tileSet is WalkwayTileSet {
+  return (tileSet as WalkwayTileSet).InverseNW !== undefined;
 }

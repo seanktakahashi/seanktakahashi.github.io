@@ -1,40 +1,9 @@
+import { marbleTileSet, waterTileSet } from "../tileSets";
 import { TileType } from "../TileType";
-import { PokemonMap, Position, TileSet } from "../types";
-
-const waterTileSet: TileSet = {
-  NW: TileType.waterNW,
-  N: TileType.waterN,
-  NE: TileType.waterNE,
-  W: TileType.waterW,
-  base: TileType.water,
-  E: TileType.waterE,
-  SW: TileType.waterSW,
-  S: TileType.waterS,
-  SE: TileType.waterSE,
-  InverseNW: TileType.waterInverseNW,
-  InverseNE: TileType.waterInverseNE,
-  InverseSW: TileType.waterInverseSW,
-  InverseSE: TileType.waterInverseSE,
-};
-
-const marbleTileSet: TileSet = {
-  NW: TileType.marbleNW,
-  N: TileType.marbleN,
-  NE: TileType.marbleNE,
-  W: TileType.marbleW,
-  base: TileType.marble,
-  E: TileType.marbleE,
-  SW: TileType.marbleSW,
-  S: TileType.marbleS,
-  SE: TileType.marbleSE,
-  InverseNW: TileType.marbleInverseNW,
-  InverseNE: TileType.marbleInverseNE,
-  InverseSW: TileType.marbleInverseSW,
-  InverseSE: TileType.marbleInverseSE,
-}
+import { isWalkwayTileSet, PokemonMap, Position, TileSet, WalkwayTileSet } from "../types";
 
 function isTileTypeInSet(tile: TileType, tileSet: TileSet): boolean {
-  return (
+  const inEnclosureSet = (
     tile === tileSet.NW ||
     tile === tileSet.N ||
     tile === tileSet.NE ||
@@ -43,11 +12,14 @@ function isTileTypeInSet(tile: TileType, tileSet: TileSet): boolean {
     tile === tileSet.E ||
     tile === tileSet.SW ||
     tile === tileSet.S ||
-    tile === tileSet.SE ||
+    tile === tileSet.SE);
+  return isWalkwayTileSet(tileSet) ?
+    inEnclosureSet ||
     tile === tileSet.InverseNW ||
     tile === tileSet.InverseNE ||
     tile === tileSet.InverseSW ||
-    tile === tileSet.InverseSE);
+    tile === tileSet.InverseSE
+    : inEnclosureSet;
 }
 
 
@@ -55,7 +27,7 @@ function isWaterTile(tile: TileType): boolean {
   return isTileTypeInSet(tile, waterTileSet);
 }
 
-export function isBuildingTile(tile: TileType): boolean {
+function isBuildingTile(tile: TileType): boolean {
   const buildingTiles = [
     TileType.woodHouseNE,
     TileType.woodHouseNEE,
@@ -77,6 +49,18 @@ export function isBuildingTile(tile: TileType): boolean {
   return buildingTiles.includes(tile);
 }
 
+function isAssortedObstruction(tile: TileType): boolean {
+  return [
+    TileType.box,
+    TileType.rock1,
+    TileType.rock2,
+    TileType.sign,
+    TileType.tree1,
+    TileType.tree2,
+    TileType.planter,
+  ].includes(tile);
+}
+
 export function spaceIsObstructed(map: PokemonMap, position: Position): boolean {
   const M = map.length;
   const N = map[0].length;
@@ -84,10 +68,10 @@ export function spaceIsObstructed(map: PokemonMap, position: Position): boolean 
     return true;
   }
   const tileType = map[position.i][position.j].type;
-  return isWaterTile(tileType) || isBuildingTile(tileType);
+  return isWaterTile(tileType) || isBuildingTile(tileType) || isAssortedObstruction(tileType);
 }
 
-function selectTileFromSet(map: PokemonMap, tileSet: TileSet, i: number, j: number): TileType {
+function selectTileFromSet(map: PokemonMap, tileSet: WalkwayTileSet, i: number, j: number): TileType {
   const M = map.length;
   const N = map[0].length;
   if (i < 0 || i >= M || j < 0 || j >= N) {
@@ -145,7 +129,7 @@ function selectTileFromSet(map: PokemonMap, tileSet: TileSet, i: number, j: numb
 // This function only creates nice tile set borders because we draw with a width bloches of sides >= 2.
 // In particular, this gaurentees that for any tile in the set, the right or left tile is also in the set.
 // The same for the top and bottom tiles to a water tile.
-function fixTileBorders(map: PokemonMap, tileSet: TileSet) {
+function fixTileBorders(map: PokemonMap, tileSet: WalkwayTileSet) {
   map.forEach((row, i) => {
     row.forEach((tile, j) => {
       if (isTileTypeInSet(tile.type, tileSet)) {
