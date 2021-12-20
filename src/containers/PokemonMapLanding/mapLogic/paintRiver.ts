@@ -3,22 +3,22 @@ import { Direction, PokemonMap, Position } from '../types';
 
 const directions = [Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.UP];
 
-function paintWaterTile(map: PokemonMap, i: number, j: number): boolean {
+function paintWaterTile(map: PokemonMap, mapSeed: TileType[][], i: number, j: number): boolean {
   const M = map.length;
   const N = map[0].length;
-  if (i < 0 || i >= M || j < 0 || j >= N || map[i][j].type) {
+  if (i < 0 || i >= M || j < 0 || j >= N || mapSeed.at(i)?.at(j) != null) {
     return true;
   }
   map[i][j].type = TileType.water;
   return false;
 }
 
-function paintWaterSplotch(map: PokemonMap, i: number, j: number): boolean {
+function paintWaterSplotch(map: PokemonMap, mapSeed: TileType[][], i: number, j: number): boolean {
   let done = [];
-  done.push(paintWaterTile(map, i, j));
-  done.push(paintWaterTile(map, i + 1, j));
-  done.push(paintWaterTile(map, i, j + 1));
-  done.push(paintWaterTile(map, i + 1, j + 1));
+  done.push(paintWaterTile(map, mapSeed, i, j));
+  done.push(paintWaterTile(map, mapSeed, i + 1, j));
+  done.push(paintWaterTile(map, mapSeed, i, j + 1));
+  done.push(paintWaterTile(map, mapSeed, i + 1, j + 1));
   return done.some((somethingDone) => somethingDone);
 }
 
@@ -87,7 +87,7 @@ export default function paintRiver(map: PokemonMap, mapSeed: TileType[][]): void
   let { i, j } = getStartingPoint(map, mapSeed, currDirection);
   let done;
   do {
-    done = paintWaterSplotch(map, i, j);
+    done = paintWaterSplotch(map, mapSeed, i, j);
     switch (currDirection) {
       case Direction.DOWN:
         i += 2;
