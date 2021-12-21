@@ -1,3 +1,4 @@
+import './styles/globals.scss';
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Chess from './containers/Chess';
