@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Tile, Position } from '../types';
 import { useSelector } from 'react-redux';
-import { selectMap, selectPosition } from '../redux/selectors';
+import { selectMap, selectPosition } from '../mapRedux/selectors';
 import Sprite from './Sprite';
 import { TileDrawing } from './Tile';
 

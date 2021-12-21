@@ -1,16 +1,18 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import PokemonMapLanding from './containers/PokemonMapLanding';
-import PageLayout from './containers/PageLayout';
+import Chess from './containers/Chess';
+import PokemonMapLanding from './Pokemon/PokemonMapLanding';
+import PokemonPageLayout from './Pokemon/PokemonPageLayout';
 
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route index element={<PokemonMapLanding />} />
-        <Route path="/" element={<PageLayout />}>
-          <Route path="*" element={<h1>404</h1>} />
+        <Route path="/pokemon/" element={<PokemonPageLayout />}>
+          <Route path="chess" element={<Chess />} />
         </Route>
+        <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </Router >
   );

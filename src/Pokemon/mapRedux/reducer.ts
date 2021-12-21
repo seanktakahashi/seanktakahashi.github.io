@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { Action, SpriteActions } from './actions';
-import { initialMapState, MapState, SpriteState, StoreState } from './states';
+import { emptyMapState, MapState, SpriteState, StoreState } from './states';
 import { Direction, PokemonMap } from '../types';
 import { spaceIsObstructed } from '../mapLogic/utils';
 
@@ -36,7 +36,7 @@ function moveSpriteState(spriteState: SpriteState, map: PokemonMap, direction: D
   }
 }
 
-function mapReducer(state: MapState = initialMapState, action: Action): MapState {
+function mapReducer(state: MapState = emptyMapState, action: Action): MapState {
   switch (action.type) {
     case SpriteActions.move.type:
       return setState(

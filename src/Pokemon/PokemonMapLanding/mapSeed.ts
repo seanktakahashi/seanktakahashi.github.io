@@ -59,3 +59,6 @@ export const mapSeed = [
   [grass, grass, grass, grass, grass, grass, marble, marble, grass, grass, water, water, water, water],
   [grass, grass, grass, grass, grass, grass, marble, marble, grass, grass, water, water, water, water],
 ];
+
+export const M = 25;
+export const N = 40;

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { SpriteActions } from '../redux/actions';
-import { selectFacing } from '../redux/selectors';
+import { SpriteActions } from '../mapRedux/actions';
+import { selectFacing } from '../mapRedux/selectors';
 import pikachuDown from '../images/sprites/pikachu_down.png';
 import pikachuLeft from '../images/sprites/pikachu_left.png';
 import pikachuRight from '../images/sprites/pikachu_right.png';
@@ -29,15 +29,19 @@ export default function Sprite() {
   const handleKey = useCallback((event: KeyboardEvent) => {
     switch (event.key) {
       case 'h':
+      case 'a':
         dispatch(SpriteActions.createMove(Direction.LEFT));
         break;
       case 'j':
+      case 's':
         dispatch(SpriteActions.createMove(Direction.DOWN));
         break;
       case 'k':
+      case 'w':
         dispatch(SpriteActions.createMove(Direction.UP));
         break;
       case 'l':
+      case 'd':
         dispatch(SpriteActions.createMove(Direction.RIGHT));
         break;
     }
