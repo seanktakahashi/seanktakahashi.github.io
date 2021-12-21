@@ -44,6 +44,9 @@ export default function Sprite() {
       case 'd':
         dispatch(SpriteActions.createMove(Direction.RIGHT));
         break;
+      case ' ':
+        dispatch(SpriteActions.interact);
+        break;
     }
   }, [dispatch]);
 

@@ -6,19 +6,15 @@ import { Direction, Door } from '../types';
 import { M, mapSeed, N } from './mapSeed';
 
 const initialSpriteState: SpriteState = {
-  position: { i: 5, j: 4 }, // in front of house
+  position: { i: 4, j: 1 }, // in front of cave door
   facing: Direction.DOWN,
 }
 
 const doors: Door[] = [
   {
-    position: { i: 4, j: 4 }, // house door
-    naviateTo: '/pokemon/chess',
+    position: { i: 3, j: 1 }, // cave door
+    naviateTo: '/',
   },
-  {
-    position: { i: 2, j: 11 }, // cave door
-    naviateTo: '/pokemon/chess',
-  }
 ];
 
 const initialMapState: MapState = {
@@ -27,7 +23,7 @@ const initialMapState: MapState = {
     doors
   },
   spriteState: initialSpriteState,
-  geography: createPokemonMap(M, N, mapSeed),
+  geography: createPokemonMap(M, N, mapSeed, false),
 }
 
 function configureStore() {

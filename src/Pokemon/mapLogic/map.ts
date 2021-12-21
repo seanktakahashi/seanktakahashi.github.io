@@ -20,9 +20,11 @@ function paintPokemonMap(map: PokemonMap, mapSeed: TileType[][]): void {
   paintRiver(map, mapSeed);
 }
 
-export function createPokemonMap(m: number, n: number, mapSeed: TileType[][]) {
+export function createPokemonMap(m: number, n: number, mapSeed: TileType[][], paintMap: boolean = true) {
   const map = initPokemonMap(m, n, mapSeed);
-  paintPokemonMap(map, mapSeed);
+  if (paintMap) {
+    paintPokemonMap(map, mapSeed);
+  }
   fixAllTileBorders(map);
   return map;
 }

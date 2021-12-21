@@ -1,18 +1,30 @@
-import React, { useMemo } from 'react';
-import { Tile, Position } from '../types';
-import { useSelector } from 'react-redux';
-import { selectMap, selectPosition } from '../mapRedux/selectors';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
+import { Tile, equalPosition } from '../types';
+import { GlobalActions } from '../mapRedux/actions';
+import { selectMap, selectPosition, selectNavigate } from '../mapRedux/selectors';
 import Sprite from './Sprite';
-import { TileDrawing } from './Tile';
+import { TileDrawing } from './TileDrawing';
 
-function equalPosition(pos1: Position, pos2: Position) {
-  return pos1.i === pos2.i && pos1.j === pos2.j;
-}
+const sprite = <Sprite />;
 
 export default function PokemonMapDrawing() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigateTo = useSelector(selectNavigate);
   const position = useSelector(selectPosition, equalPosition);
   const pokemonMap = useSelector(selectMap);
-  const sprite = useMemo(() => <Sprite />, []);
+
+  useEffect(() => {
+    if (navigateTo !== undefined) {
+      setTimeout(() => {
+        dispatch(GlobalActions.clearNavigateTo);
+        navigate(navigateTo);
+      }, 200);
+    }
+  }, [navigateTo]);
+
   return (
     <>
       {pokemonMap.map(

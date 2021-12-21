@@ -8,7 +8,7 @@ export interface Action {
 export type ActionCreator = (arg: any) => Action;
 
 export namespace SpriteActions {
-  export const move = {
+  export const move: Action = {
     type: 'MOVE',
     payload: Direction
   }
@@ -16,4 +16,13 @@ export namespace SpriteActions {
     type: 'MOVE',
     payload: direction
   });
+  export const interact: Action = {
+    type: 'INTERACT',
+  };
+}
+
+export namespace GlobalActions {
+  export const clearNavigateTo: Action = {
+    type: 'CLEAR_NAVIGATE_TO'
+  };
 }
