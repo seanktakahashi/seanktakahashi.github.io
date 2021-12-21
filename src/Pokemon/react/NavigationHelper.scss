@@ -1,0 +1,9 @@
+#fading-div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #1c1f21;
+  z-index: -1;
+  opacity: 1;
+  transition: opacity 1s;
+}

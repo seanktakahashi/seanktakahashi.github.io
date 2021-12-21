@@ -1,31 +1,39 @@
 @use "../../styles/variables";
 @use "sass:math";
 
-$num-rows: 7;
-$num-columns: 7;
+$num-rows: 6;
+$num-columns: 6;
 
 body {
   margin: 0;
 }
 
 #pokemon-footer {
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  bottom: 70px;
   left: 0;
   height: 200px;
   width: 200px;
+}
 
-  .row {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-  }
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: math.div(100%, $num-columns);
+}
 
-  .tile, .sprite {
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: math.div(200px, $num-columns);
-    width: math.div(200px, $num-columns);
-  } 
+.tile {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: math.div(100%, $num-columns);
+} 
+
+.sprite {
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }

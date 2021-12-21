@@ -2,8 +2,8 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "types/*": [
-        "./types/*"
+      "@/*": [
+        "./src/*"
       ]
     },
     // https://www.sitepoint.com/react-with-typescript-best-practices/
