@@ -2,6 +2,7 @@
   "name": "seanktakahashi.com",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://seanktakahashi.github.io/",
   "main": "src/index.tsx",
   "scripts": {
     "dev": "webpack serve --config webpack.config.js --mode development",
