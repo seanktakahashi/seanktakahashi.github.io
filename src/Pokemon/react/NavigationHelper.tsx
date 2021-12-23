@@ -20,6 +20,6 @@ export function NavigationHelper() {
     }
   }, [navigateTo]);
   return (
-    <div id="fading-div" style={{ opacity: navigating ? 1 : 0, zIndex: navigating ? 1 : -1 }} />
+    <div id="fading-div" style={navigating ? { opacity: 1, zIndex: 1 } : undefined} />
   );
 }
