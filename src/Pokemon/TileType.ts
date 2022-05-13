@@ -3,9 +3,9 @@ import flowersRed from './images/terrain/red_flowers.png';
 import flowersOrange from './images/terrain/orange_flowers.png';
 import flowersBlue from './images/terrain/blue_flowers.png';
 import weed from './images/terrain/weed.png';
-import weed4X from './images/terrain/weed_4x.png';
+import weed4x from './images/terrain/weed_4x.png';
 import weedSmall from './images/terrain/weed_small.png';
-import weed2X from './images/terrain/weed_2x.png';
+import weed2x from './images/terrain/weed_2x.png';
 import sandPatch from './images/terrain/sand_patch.png';
 import box from './images/obstructions/box.png';
 import rock1 from './images/obstructions/rock_1.png';
@@ -102,9 +102,9 @@ export enum TileType {
   flowersOrange,
   flowersBlue,
   weed,
-  weed4X,
+  weed4x,
   weedSmall,
-  weed2X,
+  weed2x,
   sandPatch,
   box,
   rock1,
@@ -202,9 +202,9 @@ export const getTypeImage = {
   [TileType.flowersOrange]: flowersOrange,
   [TileType.flowersBlue]: flowersBlue,
   [TileType.weed]: weed,
-  [TileType.weed4X]: weed4X,
+  [TileType.weed4x]: weed4x,
   [TileType.weedSmall]: weedSmall,
-  [TileType.weed2X]: weed2X,
+  [TileType.weed2x]: weed2x,
   [TileType.sandPatch]: sandPatch,
   [TileType.box]: box,
   [TileType.rock1]: rock1,
