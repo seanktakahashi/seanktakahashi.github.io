@@ -1,5 +1,5 @@
 import React from 'react';
-import { TileType, getTypeImage } from '../TileType';
+import { TileType, getTypeImage } from '../tiles/TileType';
 import { Position } from '../types';
 
 namespace TileDrawing {

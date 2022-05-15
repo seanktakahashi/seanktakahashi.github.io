@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux';
 import { Action, GlobalActions, SpriteActions } from './actions';
 import { emptyMapState, MapState, SpriteState, StoreState } from './states';
-import { Direction, Door, equalPosition, PokemonMap, Position } from '../types';
+import { Direction, Door, equalPosition, Position } from '../types';
 import { spaceIsObstructed } from '../mapLogic/utils';
+import { TileType } from '../tiles/TileType';
 
 function setState<T, K extends keyof T>(state: T, newState: Pick<T, K>): T {
   return Object.assign({}, state, newState);
 }
 
-function moveSpriteState(spriteState: SpriteState, map: PokemonMap, direction: Direction): SpriteState {
+function moveSpriteState(spriteState: SpriteState, map: TileType[][], direction: Direction): SpriteState {
   let facing;
   let newPosition = { ...spriteState.position };
   switch (direction) {

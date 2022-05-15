@@ -1,5 +1,5 @@
-import { TileType } from '../TileType';
-import { Direction, Door, PokemonMap, Position, Tile } from '../types';
+import { TileType } from '../tiles/TileType';
+import { Direction, Door, Position } from '../types';
 
 export interface GlobalState {
   navigateTo: string | undefined;
@@ -18,7 +18,7 @@ export interface MapState {
   globalState: GlobalState;
   spriteState: SpriteState;
   itemsState: ItemState;
-  geography: PokemonMap;
+  geography: TileType[][];
 }
 
 export interface StoreState {
@@ -38,5 +38,5 @@ export const emptyMapState: MapState = {
   itemsState: {
     doors: []
   },
-  geography: Array(Array(new Tile(TileType.grass)))
+  geography: Array(Array(TileType.grass))
 };

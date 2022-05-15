@@ -1,6 +1,6 @@
 import { fenceTileSet, marbleTileSet, mountainTileSet, waterTileSet } from "../tiles/tileSets";
-import { TileType } from "../TileType";
-import { isWalkwayTileSet, PokemonMap, Position, TileSet, WalkwayTileSet } from "../types";
+import { TileType } from "../tiles/TileType";
+import { isWalkwayTileSet, Position, TileSet, WalkwayTileSet } from "../types";
 
 function isTileTypeInSet(tile: TileType, tileSet: TileSet): boolean {
   const inEnclosureSet = (
@@ -64,64 +64,64 @@ function isAssortedObstruction(tile: TileType): boolean {
   ].includes(tile);
 }
 
-export function spaceIsObstructed(map: PokemonMap, position: Position): boolean {
+export function spaceIsObstructed(map: TileType[][], position: Position): boolean {
   const M = map.length;
   const N = map[0].length;
   if (position.i < 0 || position.i >= M || position.j < 0 || position.j >= N) {
     return true;
   }
-  const tileType = map[position.i][position.j].type;
+  const tileType = map[position.i][position.j];
   return isWaterTile(tileType) || isBuildingTile(tileType) || isEnclosureTile(tileType) || isAssortedObstruction(tileType);
 }
 
-function selectTileFromSet(map: PokemonMap, tileSet: WalkwayTileSet, i: number, j: number): TileType {
+function selectTileFromSet(map: TileType[][], tileSet: WalkwayTileSet, i: number, j: number): TileType {
   const M = map.length;
   const N = map[0].length;
   if (i < 0 || i >= M || j < 0 || j >= N) {
     throw new Error(`position {i: ${i}, j: ${j}} is outside of map`);
   }
   // Bend
-  if (i === 0 || !isTileTypeInSet(map[i - 1][j].type, tileSet)) {
-    if (j > 0 && !isTileTypeInSet(map[i][j - 1].type, tileSet)) {
+  if (i === 0 || !isTileTypeInSet(map[i - 1][j], tileSet)) {
+    if (j > 0 && !isTileTypeInSet(map[i][j - 1], tileSet)) {
       // top + left grass
       return tileSet.NW;
-    } else if (j < N - 1 && !isTileTypeInSet(map[i][j + 1].type, tileSet)) {
+    } else if (j < N - 1 && !isTileTypeInSet(map[i][j + 1], tileSet)) {
       // top + right grass
       return tileSet.NE;
     }
-  } else if (i < M - 1 && !isTileTypeInSet(map[i + 1][j].type, tileSet)) {
-    if (j !== 0 && !isTileTypeInSet(map[i][j - 1].type, tileSet)) {
+  } else if (i < M - 1 && !isTileTypeInSet(map[i + 1][j], tileSet)) {
+    if (j !== 0 && !isTileTypeInSet(map[i][j - 1], tileSet)) {
       // bottom + left grass
       return tileSet.SW;
-    } else if (j < N - 1 && !isTileTypeInSet(map[i][j + 1].type, tileSet)) {
+    } else if (j < N - 1 && !isTileTypeInSet(map[i][j + 1], tileSet)) {
       // bottom + right grass
       return tileSet.SE;
     }
   }
   // Edge
-  if (i === 0 || !isTileTypeInSet(map[i - 1][j].type, tileSet)) {
+  if (i === 0 || !isTileTypeInSet(map[i - 1][j], tileSet)) {
     // top grass
     return tileSet.N;
-  } else if (j > 0 && !isTileTypeInSet(map[i][j - 1].type, tileSet)) {
+  } else if (j > 0 && !isTileTypeInSet(map[i][j - 1], tileSet)) {
     // left grass
     return tileSet.W;
-  } else if (j < N - 1 && !isTileTypeInSet(map[i][j + 1].type, tileSet)) {
+  } else if (j < N - 1 && !isTileTypeInSet(map[i][j + 1], tileSet)) {
     // right grass
     return tileSet.E;
-  } else if (i < M - 1 && !isTileTypeInSet(map[i + 1][j].type, tileSet)) {
+  } else if (i < M - 1 && !isTileTypeInSet(map[i + 1][j], tileSet)) {
     return tileSet.S;
   }
   // Corner
-  if (i === 0 || (j > 0 && !isTileTypeInSet(map[i - 1][j - 1].type, tileSet))) {
+  if (i === 0 || (j > 0 && !isTileTypeInSet(map[i - 1][j - 1], tileSet))) {
     // top left grass
     return tileSet.InverseNW;
-  } else if (i === 0 || (j < N - 1 && !isTileTypeInSet(map[i - 1][j + 1].type, tileSet))) {
+  } else if (i === 0 || (j < N - 1 && !isTileTypeInSet(map[i - 1][j + 1], tileSet))) {
     // top right grass
     return tileSet.InverseNE;
-  } else if (i < M - 1 && j > 0 && !isTileTypeInSet(map[i + 1][j - 1].type, tileSet)) {
+  } else if (i < M - 1 && j > 0 && !isTileTypeInSet(map[i + 1][j - 1], tileSet)) {
     // bottom left grass
     return tileSet.InverseSW;
-  } else if (i < M - 1 && j < N - 1 && !isTileTypeInSet(map[i + 1][j + 1].type, tileSet)) {
+  } else if (i < M - 1 && j < N - 1 && !isTileTypeInSet(map[i + 1][j + 1], tileSet)) {
     // bottom left grass
     return tileSet.InverseSE;
   }
@@ -132,17 +132,17 @@ function selectTileFromSet(map: PokemonMap, tileSet: WalkwayTileSet, i: number, 
 // This function only creates nice tile set borders because we draw with a width bloches of sides >= 2.
 // In particular, this gaurentees that for any tile in the set, the right or left tile is also in the set.
 // The same for the top and bottom tiles to a water tile.
-function fixTileBorders(map: PokemonMap, tileSet: WalkwayTileSet) {
+function fixTileBorders(map: TileType[][], tileSet: WalkwayTileSet) {
   map.forEach((row, i) => {
     row.forEach((tile, j) => {
-      if (isTileTypeInSet(tile.type, tileSet)) {
-        tile.type = selectTileFromSet(map, tileSet, i, j);
+      if (isTileTypeInSet(tile, tileSet)) {
+        map[i][j] = selectTileFromSet(map, tileSet, i, j);
       }
     });
   });
 }
 
-export function fixAllTileBorders(map: PokemonMap) {
+export function fixAllTileBorders(map: TileType[][]) {
   fixTileBorders(map, waterTileSet);
   fixTileBorders(map, marbleTileSet);
 }

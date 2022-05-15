@@ -1,4 +1,5 @@
-import { TileType } from "../TileType";
+import { TileType } from "../tiles/TileType";
+import { Door, PokemonMap } from "../types";
 
 const houseNE = TileType.woodHouseNE;
 const houseNEE = TileType.woodHouseNEE;
@@ -47,14 +48,22 @@ const tree2 = TileType.tree2;
 const weedSmall = TileType.weedSmall;
 const flowersRed = TileType.flowersRed;
 
-export const mapSeed = [
-  [mountainN, mountainN, mountainN, mountainN, mountainN, mountainNE],
-  [grass, rock2, grass, grass, grass, mountainE],
-  [mountainNW, mountainN, mountainNE, sign, grass, mountainE],
-  [mountainSW, cave, mountainSE, grass, grass, mountainE],
-  [rock1, sandPatch, grass, grass, grass, mountainE],
-  [mountainS, mountainS, mountainS, mountainS, mountainS, mountainSE],
+const doors: Door[] = [
+  {
+    position: { i: 3, j: 1 }, // cave door
+    naviateTo: '/',
+  },
 ];
 
-export const M = 6;
-export const N = 6;
+export const pageLayoutMap: PokemonMap = {
+  tiles: [
+    [mountainN, mountainN, mountainN, mountainN, mountainN, mountainNE],
+    [grass, rock2, grass, grass, grass, mountainE],
+    [mountainNW, mountainN, mountainNE, sign, grass, mountainE],
+    [mountainSW, cave, mountainSE, grass, grass, mountainE],
+    [rock1, sandPatch, grass, grass, grass, mountainE],
+    [mountainS, mountainS, mountainS, mountainS, mountainS, mountainSE],
+  ],
+  doors,
+  start: { i: 4, j: 1 }, // in front of cave door
+}

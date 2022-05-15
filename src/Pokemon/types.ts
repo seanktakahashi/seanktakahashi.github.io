@@ -1,4 +1,4 @@
-import { TileType } from './TileType';
+import { TileType } from './tiles/TileType';
 
 export enum Direction {
   DOWN,
@@ -16,20 +16,16 @@ export function equalPosition(pos1: Position, pos2: Position) {
   return pos1.i === pos2.i && pos1.j === pos2.j;
 }
 
-export class Tile {
-  type: TileType;
-
-  constructor(type: TileType) {
-    this.type = type;
-  }
-}
-
 export type Door = {
   position: Position,
   naviateTo: string,
 }
 
-export type PokemonMap = Tile[][];
+export type PokemonMap = {
+  tiles: TileType[][],
+  start: Position,
+  doors: Door[],
+}
 
 export type TileSet = EnclosureTileSet | WalkwayTileSet;
 
