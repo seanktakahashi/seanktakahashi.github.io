@@ -3,9 +3,13 @@
     opacity: 1;
     z-index: 1;
   }
+  // Only move fading div back after fade
+  99% {
+    z-index: 1;
+  }
   100% {
     opacity: 0;
-    z-index: -1;
+    z-index: 0;
   }
 }
 

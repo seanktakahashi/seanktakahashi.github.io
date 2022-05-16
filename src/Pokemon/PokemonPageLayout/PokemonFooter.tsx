@@ -4,16 +4,18 @@ import React, { useMemo } from 'react';
 import { Provider } from 'react-redux';
 import { pageLayoutMap } from "./pageLayoutMap";
 import { createPokemonMapStore } from "../mapRedux/store";
+import { NavigationHelper } from "../react/NavigationHelper";
 
 export default function PokemonFooter() {
   const store = useMemo(() => {
     return createPokemonMapStore(pageLayoutMap);
   }, [pageLayoutMap]);
   return (
-    <div id="pokemon-footer">
-      <Provider store={store}>
+    <Provider store={store}>
+      <div id="pokemon-footer">
+        <NavigationHelper />
         <PokemonMapDrawing />
-      </Provider>
-    </div>
+      </div>
+    </Provider>
   );
 }

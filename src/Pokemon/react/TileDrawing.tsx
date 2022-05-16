@@ -11,13 +11,14 @@ namespace TileDrawing {
   export type Props = OwnProps;
 }
 
-export function TileDrawing({ type, sprite }: TileDrawing.Props) {
+export function TileDrawing({ type, position, sprite }: TileDrawing.Props) {
   return (
     <div
+      id={`${position.i},${position.j}`}
       className="tile"
       style={{ backgroundImage: `url(${getTypeImage[type]})` }}
     >
       {sprite}
-    </div>
+    </div >
   );
 }

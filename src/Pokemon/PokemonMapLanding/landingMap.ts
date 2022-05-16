@@ -24,11 +24,10 @@ const bigTreeW = TileType.bigTreeW;
 const bigTreeE = TileType.bigTreeE;
 const bigTreeSW = TileType.bigTreeSW;
 const bigTreeSE = TileType.bigTreeSE;
-const bigTreeShadedNW = TileType.bigTreeShadedNW;
-const bigTreeShadedNE = TileType.bigTreeShadedNE;
-const bigTreeShadedW = TileType.bigTreeShadedW;
-const bigTreeShadedE = TileType.bigTreeShadedE;
 
+const mountainNW = TileType.mountainNW;
+const mountainNE = TileType.mountainNE;
+const mountainN = TileType.mountainN;
 const mountainW = TileType.mountainW;
 const mountainSW = TileType.mountainSW;
 const mountainS = TileType.mountainS;
@@ -38,7 +37,6 @@ const mountain = TileType.mountain;
 const cave = TileType.cave;
 
 const grass = TileType.grass;
-const fenceNE = TileType.fenceNE;
 const fenceNW = TileType.fenceNW;
 const fenceN = TileType.fenceN;
 const fenceS = TileType.fenceS;
@@ -59,7 +57,7 @@ const flowersRed = TileType.flowersRed;
 
 const doors: Door[] = [
   {
-    position: { i: 5, j: 4 }, // house door
+    position: { i: 7, j: 4 }, // house door
     naviateTo: '/pokemon/chess',
   },
   {
@@ -70,23 +68,26 @@ const doors: Door[] = [
 
 export const landingPokemonMap: PokemonMap = {
   tiles: [
-    [grass, fenceNW, fenceN, fenceN, fenceN, fenceN, fenceN, mountainW, mountain, mountain, mountain, mountain, mountain, mountainE],
-    [grass, fenceW, grass, grass, grass, grass, grass, mountainW, mountain, mountain, mountain, mountain, mountain, mountainE],
-    [grass, fenceW, grass, houseNNWW, houseNNW, houseNNE, houseNNEE, mountainW, mountain, mountain, mountain, mountain, mountain, mountainE],
-    [grass, fenceW, grass, houseNWW, houseNW, houseNE, houseNEE, mountainSW, mountainS, mountainS, mountainS, cave, mountainS, mountainSE],
-    [grass, fenceW, grass, houseSWW, houseSW, houseSE, houseSEE, grass, fenceE, grass, grass, grass, grass, grass],
-    [grass, fenceW, grass, houseSSWW, houseSSW, houseSSE, houseSSEE, box, fenceE, grass, grass, grass, grass, grass],
-    [grass, fenceW, grass, flowersRed, marble, marble, grass, grass, fenceE, grass, grass, grass, grass, grass],
-    [grass, fenceW, grass, grass, marble, marble, marble, marble, fenceE, marble, marble, marble, marble, marble],
-    [grass, fenceW, grass, grass, marble, marble, marble, marble, fenceE, marble, marble, marble, marble, marble],
-    [grass, fenceW, tree2, grass, water, water, marble, marble, fenceE, grass, grass, grass, grass, grass],
-    [grass, fenceW, grass, grass, water, water, marble, marble, fenceE, grass, grass, grass, grass, rock1],
-    [grass, fenceSW, fenceS, fenceS, fenceS, fenceS, fenceS, fenceS, fenceSE, grass, weedSmall, grass, weedSmall, grass],
-    [grass, bigTreeNW, bigTreeNE, grass, grass, grass, marble, marble, sign, grass, water, water, water, water],
-    [grass, bigTreeW, bigTreeE, grass, grass, grass, marble, marble, grass, grass, water, water, water, water],
-    [grass, bigTreeSW, bigTreeSE, grass, grass, grass, marble, marble, grass, grass, water, water, water, water],
-    [grass, bigTreeNW, bigTreeNE, grass, grass, grass, marble, marble, grass, grass, water, water, water, water],
+    [grass, grass, grass, grass, grass, grass, grass, mountainNW, mountainN, mountainN, mountainN, mountainN, mountainN, mountainNE, grass],
+    [grass, grass, grass, grass, grass, grass, grass, mountainW, mountain, mountain, mountain, mountain, mountain, mountainE, grass],
+    [grass, fenceNW, fenceN, fenceN, fenceN, fenceN, fenceN, mountainW, mountain, mountain, mountain, mountain, mountain, mountainE, grass],
+    [grass, fenceW, grass, grass, grass, grass, grass, mountainW, mountain, mountain, mountain, mountain, mountain, mountainE, grass],
+    [grass, fenceW, grass, houseNNWW, houseNNW, houseNNE, houseNNEE, mountainW, mountain, mountain, mountain, mountain, mountain, mountainE, grass],
+    [grass, fenceW, grass, houseNWW, houseNW, houseNE, houseNEE, mountainSW, mountainS, mountainS, mountainS, cave, mountainS, mountainSE, grass],
+    [grass, fenceW, grass, houseSWW, houseSW, houseSE, houseSEE, grass, fenceE, grass, grass, grass, grass, grass, grass],
+    [grass, fenceW, grass, houseSSWW, houseSSW, houseSSE, houseSSEE, box, fenceE, grass, grass, grass, grass, grass, grass],
+    [grass, fenceW, grass, flowersRed, marble, marble, grass, grass, fenceE, grass, grass, grass, grass, grass, grass],
+    [grass, fenceW, grass, grass, marble, marble, marble, marble, fenceE, marble, marble, marble, marble, marble, grass],
+    [grass, fenceW, grass, grass, marble, marble, marble, marble, fenceE, marble, marble, marble, marble, marble, grass],
+    [grass, fenceW, tree2, grass, water, water, marble, marble, fenceE, grass, grass, grass, grass, grass, grass],
+    [grass, fenceW, grass, grass, water, water, marble, marble, fenceE, grass, grass, grass, grass, rock1, grass],
+    [grass, fenceSW, fenceS, fenceS, fenceS, fenceS, fenceS, fenceS, fenceSE, grass, weedSmall, grass, weedSmall, grass, grass],
+    [grass, bigTreeNW, bigTreeNE, grass, grass, grass, marble, marble, sign, grass, water, water, water, water, grass],
+    [grass, bigTreeW, bigTreeE, grass, grass, grass, marble, marble, grass, grass, water, water, water, water, grass],
+    [grass, bigTreeSW, bigTreeSE, grass, grass, grass, marble, marble, grass, grass, water, water, water, water, grass],
+    [grass, grass, grass, grass, grass, grass, marble, marble, grass, grass, water, water, water, water, grass],
+    [grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass, grass],
   ],
   doors,
-  start: { i: 6, j: 4 } // in front of house
+  start: { i: 8, j: 4 } // in front of house
 }
