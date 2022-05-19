@@ -5,7 +5,8 @@ import { createPokemonMapStore } from '../mapRedux/store'
 import PokemonMapDrawing from '../react/PokemonMapDrawing';
 import { landingPokemonMap } from './landingMap';
 import { getTypeImage, TileType } from '../tiles/TileType';
-import { NavigationHelper } from '../react/NavigationHelper';
+import NavigationHelper from '../react/NavigationHelper';
+import Dialog from '../react/Dialog';
 
 export default function PokemonMapLanding() {
   const store = useMemo(() => {
@@ -17,6 +18,7 @@ export default function PokemonMapLanding() {
         style={{ backgroundImage: `url(${getTypeImage[TileType.grass]})` }}
       >
         <NavigationHelper />
+        <Dialog />
         <div id={"landing"}>
           <PokemonMapDrawing />
         </div>

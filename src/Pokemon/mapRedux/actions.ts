@@ -25,4 +25,7 @@ export namespace GlobalActions {
   export const clearNavigateTo: Action = {
     type: 'CLEAR_NAVIGATE_TO'
   };
+  export const clearDialog: Action = {
+    type: 'CLEAR_DIALOG'
+  };
 }

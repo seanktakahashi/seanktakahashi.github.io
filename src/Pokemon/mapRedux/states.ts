@@ -3,6 +3,7 @@ import { Direction, Door, Position } from '../types';
 
 export interface GlobalState {
   navigateTo: string | undefined;
+  dialog: string | undefined;
 }
 
 export interface SpriteState {
@@ -27,6 +28,7 @@ export interface StoreState {
 
 export const emptyGlobalState = {
   navigateTo: undefined,
+  dialog: undefined
 }
 
 export const emptyMapState: MapState = {

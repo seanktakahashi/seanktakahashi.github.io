@@ -1,0 +1,22 @@
+.dialog {
+  position: fixed;
+  bottom: 3vw;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: 500px;
+}
+
+.dialog-frame {
+  width: 100%;
+}
+
+.dialog-content {
+  margin: 30px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow-y: auto;
+}

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectNavigate } from '../mapRedux/selectors';
 import { GlobalActions } from '../mapRedux/actions';
 
-export function NavigationHelper() {
+export default function NavigationHelper() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const navigateTo = useSelector(selectNavigate);
