@@ -7,7 +7,8 @@ import { Direction, PokemonMap } from '../types';
 const initialMapState = (map: PokemonMap): MapState => ({
   globalState: emptyGlobalState,
   itemsState: {
-    doors: map.doors
+    doors: map.doors,
+    signs: map.signs,
   },
   spriteState: {
     position: map.start,

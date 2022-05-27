@@ -1,5 +1,5 @@
 import { TileType } from "../tiles/TileType";
-import { Door, PokemonMap } from "../types";
+import { PokemonMap } from "../types";
 
 const mountainNW = TileType.mountainNW;
 const mountainN = TileType.mountainN;
@@ -17,13 +17,6 @@ const sandPatch = TileType.sandPatch;
 const rock1 = TileType.rock1;
 const rock2 = TileType.rock2;
 
-const doors: Door[] = [
-  {
-    position: { i: 3, j: 1 }, // cave door
-    naviateTo: '/',
-  },
-];
-
 export const pageLayoutMap: PokemonMap = {
   tiles: [
     [mountainN, mountainN, mountainN, mountainN, mountainN, mountainNE],
@@ -33,6 +26,17 @@ export const pageLayoutMap: PokemonMap = {
     [rock1, sandPatch, grass, grass, grass, mountainE],
     [mountainS, mountainS, mountainS, mountainS, mountainS, mountainSE],
   ],
-  doors,
+  doors: [
+    {
+      position: { i: 3, j: 1 }, // cave door
+      naviateTo: '/',
+    },
+  ],
+  signs: [
+    {
+      position: { i: 2, j: 3 },
+      dialog: "Welcome to the world of POKéMON",
+    },
+  ],
   start: { i: 4, j: 1 }, // in front of cave door
 }

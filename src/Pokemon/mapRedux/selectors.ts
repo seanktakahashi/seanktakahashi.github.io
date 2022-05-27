@@ -6,5 +6,3 @@ export const selectMap = (state: StoreState) => state.mapState.geography;
 
 export const selectNavigate = (state: StoreState) => state.mapState.globalState.navigateTo;
 export const selectDialog = (state: StoreState) => state.mapState.globalState.dialog;
-
-export const selectItems = (state: StoreState) => state.mapState.itemsState;

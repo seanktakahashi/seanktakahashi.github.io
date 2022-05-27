@@ -21,10 +21,16 @@ export type Door = {
   naviateTo: string,
 }
 
+export type Sign = {
+  position: Position,
+  dialog: string,
+}
+
 export type PokemonMap = {
   tiles: TileType[][],
   start: Position,
   doors: Door[],
+  signs: Sign[],
 }
 
 export type TileSet = EnclosureTileSet | WalkwayTileSet;

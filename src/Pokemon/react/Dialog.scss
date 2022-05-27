@@ -1,3 +1,23 @@
+@font-face {
+  font-family: "PokemonRedBlue";
+  src: local("PokemonRedBlue"), url("../images/pokemon-red-blue-font.ttf") format("truetype");
+}
+
+@keyframes blink {
+  49% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .dialog {
   position: fixed;
   bottom: 3vw;
@@ -5,6 +25,22 @@
   transform: translateX(-50%);
   z-index: 1;
   width: 500px;
+  height: 155px;
+
+  &::after {
+    content:'';
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    margin-left: -50px;
+    margin-top: -40px;
+    width: 0;
+    height: 0;
+    border-top: solid 15px black;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+    animation: blink 1.5s linear infinite;
+  }
 }
 
 .dialog-frame {
@@ -12,11 +48,18 @@
 }
 
 .dialog-content {
-  margin: 30px;
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
+  background-color: white;
+  margin: 17px;
+  padding: 13px;
+  border-radius: 10px;
   overflow-y: auto;
+  font-family: "PokemonRedBlue";
+  letter-spacing: 3px;
+
+
 }
