@@ -1,8 +1,6 @@
 // webpack.config.js
-const path = require('path')
-const webpack = require('webpack')
-
-const ASSET_PATH = process.env.ASSET_PATH || '/';
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx', // our entry point, as mentioned earlier
@@ -52,6 +50,15 @@ module.exports = {
     historyApiFallback: true, // allow reactrouterv6 to find paths besides /
     port: 3000
   },
-  plugins: [],
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: './public/',
+          to: './',
+        },
+      ]
+    })
+  ],
   devtool: 'eval-source-map', // builds high quality source maps
 }
