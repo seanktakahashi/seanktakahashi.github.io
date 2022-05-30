@@ -1,4 +1,4 @@
-import { TileType } from '../tiles/TileType';
+import { Tile } from '../tiles/Tile';
 import { Direction, Door, Position, Sign } from '../types';
 
 export interface GlobalState {
@@ -20,7 +20,7 @@ export interface MapState {
   globalState: GlobalState;
   spriteState: SpriteState;
   itemsState: ItemState;
-  geography: TileType[][];
+  geography: Tile[][];
 }
 
 export interface StoreState {
@@ -42,5 +42,5 @@ export const emptyMapState: MapState = {
     doors: [],
     signs: [],
   },
-  geography: Array(Array(TileType.grass))
+  geography: Array(Array(Tile.grass))
 };

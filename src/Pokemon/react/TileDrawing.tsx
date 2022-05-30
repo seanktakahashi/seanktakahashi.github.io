@@ -1,12 +1,12 @@
 import React from 'react';
-import { TileType, getTypeImage } from '../tiles/TileType';
+import { Tile, getTypeImage } from '../tiles/Tile';
 import { Position } from '../types';
-import '../tiles/InteriorTileType.scss';
-import '../tiles/ExteriorTileType.scss';
+import '../tiles/InteriorTile.scss';
+import '../tiles/ExteriorTile.scss';
 
 namespace TileDrawing {
   interface OwnProps {
-    type: TileType;
+    type: Tile;
     position: Position;
     sprite?: JSX.Element;
   }

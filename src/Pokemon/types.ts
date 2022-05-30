@@ -1,4 +1,4 @@
-import { TileType } from './tiles/TileType';
+import { Tile } from './tiles/Tile';
 
 export enum Direction {
   DOWN,
@@ -27,42 +27,8 @@ export type Sign = {
 }
 
 export type PokemonMap = {
-  tiles: TileType[][],
+  tiles: Tile[][],
   start: Position,
   doors: Door[],
   signs: Sign[],
-}
-
-export type TileSet = EnclosureTileSet | WalkwayTileSet;
-
-export interface EnclosureTileSet {
-  NW: TileType,
-  N: TileType,
-  NE: TileType,
-  W: TileType,
-  base: TileType,
-  E: TileType,
-  SW: TileType,
-  S: TileType,
-  SE: TileType,
-}
-
-export interface WalkwayTileSet {
-  NW: TileType,
-  N: TileType,
-  NE: TileType,
-  W: TileType,
-  base: TileType,
-  E: TileType,
-  SW: TileType,
-  S: TileType,
-  SE: TileType,
-  InverseNW: TileType,
-  InverseNE: TileType,
-  InverseSW: TileType,
-  InverseSE: TileType,
-}
-
-export function isWalkwayTileSet(tileSet: TileSet): tileSet is WalkwayTileSet {
-  return (tileSet as WalkwayTileSet).InverseNW !== undefined;
 }

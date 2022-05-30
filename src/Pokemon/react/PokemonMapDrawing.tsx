@@ -4,7 +4,7 @@ import { equalPosition } from '../types';
 import { selectMap, selectPosition } from '../mapRedux/selectors';
 import Sprite from './Sprite';
 import { TileDrawing } from './TileDrawing';
-import { TileType } from '../tiles/TileType';
+import { Tile } from '../tiles/Tile';
 
 const sprite = <Sprite />;
 
@@ -16,9 +16,9 @@ export default function PokemonMapDrawing() {
     <>
       {
         pokemonMap.map(
-          (row: TileType[], i: number) => (
+          (row: Tile[], i: number) => (
             <div key={i} className="row">
-              {row.map((elem: TileType, j: number) => (
+              {row.map((elem: Tile, j: number) => (
                 <TileDrawing
                   key={`${i},${j}`}
                   type={elem}

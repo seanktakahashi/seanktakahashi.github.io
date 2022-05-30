@@ -1,44 +1,11 @@
 import { combineReducers } from 'redux';
 import { Action, GlobalActions, SpriteActions } from './actions';
-import { emptyMapState, MapState, SpriteState, StoreState } from './states';
-import { Direction, Door, equalPosition, Position, Sign } from '../types';
-import { spaceIsObstructed } from '../mapLogic/utils';
-import { TileType } from '../tiles/TileType';
+import { emptyMapState, MapState, StoreState } from './states';
+import { Direction } from '../types';
+import { findDialog, findItem, moveSpriteState } from './utils/mapUtils';
 
 function setState<T, K extends keyof T>(state: T, newState: Pick<T, K>): T {
   return Object.assign({}, state, newState);
-}
-
-function stepInDirection(position: Position, direction: Direction): Position {
-  const { i, j } = position;
-  switch (direction) {
-    case Direction.LEFT:
-      return { i, j: j - 1 }
-    case Direction.DOWN:
-      return { i: i + 1, j }
-    case Direction.UP:
-      return { i: i - 1, j }
-    case Direction.RIGHT:
-      return { i, j: j + 1 }
-  }
-}
-
-function moveSpriteState(spriteState: SpriteState, map: TileType[][], direction: Direction): SpriteState {
-  let newPosition = stepInDirection(spriteState.position, direction);
-  const obstructed = spaceIsObstructed(map, newPosition);
-  return {
-    position: obstructed ? spriteState.position : newPosition,
-    facing: direction
-  }
-}
-
-function findItem<T extends Door | Sign>(position: Position, items: T[]): T | undefined {
-  return items.find(item => equalPosition(position, item.position));
-}
-
-function findDialog(spritePosition: Position, facing: Direction, signs: Sign[]): string | undefined {
-  const spaceOfInteraction = stepInDirection(spritePosition, facing);
-  return findItem(spaceOfInteraction, signs)?.dialog;
 }
 
 function movementReducer(state: MapState, action: Action): MapState {

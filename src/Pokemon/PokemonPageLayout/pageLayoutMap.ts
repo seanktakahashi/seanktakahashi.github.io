@@ -1,21 +1,21 @@
-import { TileType } from "../tiles/TileType";
+import { Tile } from "../tiles/Tile";
 import { PokemonMap } from "../types";
 
-const mountainNW = TileType.mountainNW;
-const mountainN = TileType.mountainN;
-const mountainNE = TileType.mountainNE;
-const mountainE = TileType.mountainE;
-const mountainSW = TileType.mountainSW;
-const mountainS = TileType.mountainS;
-const mountainSE = TileType.mountainSE;
-const cave = TileType.cave;
+const mountainNW = Tile.mountainNW;
+const mountainN = Tile.mountainN;
+const mountainNE = Tile.mountainNE;
+const mountainE = Tile.mountainE;
+const mountainSW = Tile.mountainSW;
+const mountainS = Tile.mountainS;
+const mountainSE = Tile.mountainSE;
+const cave = Tile.cave;
 
-const grass = TileType.grass;
+const grass = Tile.grass;
 
-const sign = TileType.sign;
-const sandPatch = TileType.sandPatch;
-const rock1 = TileType.rock1;
-const rock2 = TileType.rock2;
+const sign = Tile.sign;
+const sandPatch = Tile.sandPatch;
+const rock1 = Tile.rock1;
+const rock2 = Tile.rock2;
 
 export const pageLayoutMap: PokemonMap = {
   tiles: [

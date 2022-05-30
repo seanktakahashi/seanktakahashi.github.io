@@ -1,59 +1,59 @@
 import { Door, PokemonMap, Sign } from "../../Pokemon/types";
-import { TileType } from "../tiles/TileType";
+import { Tile } from "../tiles/Tile";
 
-const houseNE = TileType.woodHouseNE;
-const houseNEE = TileType.woodHouseNEE;
-const houseNNE = TileType.woodHouseNNE;
-const houseNNEE = TileType.woodHouseNNEE;
-const houseNNW = TileType.woodHouseNNW;
-const houseNNWW = TileType.woodHouseNNWW;
-const houseNW = TileType.woodHouseNW;
-const houseNWW = TileType.woodHouseNWW;
-const houseSE = TileType.woodHouseSE;
-const houseSEE = TileType.woodHouseSEE;
-const houseSSE = TileType.woodHouseSSE;
-const houseSSEE = TileType.woodHouseSSEE;
-const houseSSW = TileType.woodHouseSSW;
-const houseSSWW = TileType.woodHouseSSWW;
-const houseSW = TileType.woodHouseSW;
-const houseSWW = TileType.woodHouseSWW;
+const houseNE = Tile.woodHouseNE;
+const houseNEE = Tile.woodHouseNEE;
+const houseNNE = Tile.woodHouseNNE;
+const houseNNEE = Tile.woodHouseNNEE;
+const houseNNW = Tile.woodHouseNNW;
+const houseNNWW = Tile.woodHouseNNWW;
+const houseNW = Tile.woodHouseNW;
+const houseNWW = Tile.woodHouseNWW;
+const houseSE = Tile.woodHouseSE;
+const houseSEE = Tile.woodHouseSEE;
+const houseSSE = Tile.woodHouseSSE;
+const houseSSEE = Tile.woodHouseSSEE;
+const houseSSW = Tile.woodHouseSSW;
+const houseSSWW = Tile.woodHouseSSWW;
+const houseSW = Tile.woodHouseSW;
+const houseSWW = Tile.woodHouseSWW;
 
-const bigTreeNW = TileType.bigTreeNW;
-const bigTreeNE = TileType.bigTreeNE;
-const bigTreeW = TileType.bigTreeW;
-const bigTreeE = TileType.bigTreeE;
-const bigTreeSW = TileType.bigTreeSW;
-const bigTreeSE = TileType.bigTreeSE;
+const bigTreeNW = Tile.bigTreeNW;
+const bigTreeNE = Tile.bigTreeNE;
+const bigTreeW = Tile.bigTreeW;
+const bigTreeE = Tile.bigTreeE;
+const bigTreeSW = Tile.bigTreeSW;
+const bigTreeSE = Tile.bigTreeSE;
 
-const mountainNW = TileType.mountainNW;
-const mountainNE = TileType.mountainNE;
-const mountainN = TileType.mountainN;
-const mountainW = TileType.mountainW;
-const mountainSW = TileType.mountainSW;
-const mountainS = TileType.mountainS;
-const mountainE = TileType.mountainE;
-const mountainSE = TileType.mountainSE;
-const mountain = TileType.mountain;
-const cave = TileType.cave;
+const mountainNW = Tile.mountainNW;
+const mountainNE = Tile.mountainNE;
+const mountainN = Tile.mountainN;
+const mountainW = Tile.mountainW;
+const mountainSW = Tile.mountainSW;
+const mountainS = Tile.mountainS;
+const mountainE = Tile.mountainE;
+const mountainSE = Tile.mountainSE;
+const mountain = Tile.mountain;
+const cave = Tile.cave;
 
-const grass = TileType.grass;
-const fenceNW = TileType.fenceNW;
-const fenceN = TileType.fenceN;
-const fenceS = TileType.fenceS;
-const fenceE = TileType.fenceE;
-const fenceW = TileType.fenceW;
-const fenceSE = TileType.fenceSE;
-const fenceSW = TileType.fenceSW;
+const grass = Tile.grass;
+const fenceNW = Tile.fenceNW;
+const fenceN = Tile.fenceN;
+const fenceS = Tile.fenceS;
+const fenceE = Tile.fenceE;
+const fenceW = Tile.fenceW;
+const fenceSE = Tile.fenceSE;
+const fenceSW = Tile.fenceSW;
 
-const marble = TileType.marble;
-const water = TileType.water;
+const marble = Tile.marble;
+const water = Tile.water;
 
-const sign = TileType.sign;
-const box = TileType.box;
-const rock1 = TileType.rock1;
-const tree2 = TileType.tree2;
-const weedSmall = TileType.weedSmall;
-const flowersRed = TileType.flowersRed;
+const sign = Tile.sign;
+const box = Tile.box;
+const rock1 = Tile.rock1;
+const tree2 = Tile.tree2;
+const weedSmall = Tile.weedSmall;
+const flowersRed = Tile.flowersRed;
 
 const doors: Door[] = [
   {
