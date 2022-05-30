@@ -58,7 +58,7 @@ const flowersRed = TileType.flowersRed;
 const doors: Door[] = [
   {
     position: { i: 7, j: 4 }, // house door
-    naviateTo: '/pokemon/chess',
+    naviateTo: '/pokemon/home',
   },
   {
     position: { i: 2, j: 11 }, // cave door

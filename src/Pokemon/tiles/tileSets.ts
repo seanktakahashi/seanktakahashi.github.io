@@ -1,8 +1,9 @@
 import { TileType } from "./TileType";
 import { EnclosureTileSet, WalkwayTileSet } from "../types";
+import { ExteriorTileType } from "./ExteriorTileType";
 
 export const waterTileSet: WalkwayTileSet = {
-  NW: TileType.waterNW,
+  NW: ExteriorTileType.waterNW,
   N: TileType.waterN,
   NE: TileType.waterNE,
   W: TileType.waterW,

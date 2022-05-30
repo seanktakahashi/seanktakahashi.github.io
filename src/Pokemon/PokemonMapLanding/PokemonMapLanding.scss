@@ -27,12 +27,17 @@ $tile-weight: 30px;
     display: flex;
     flex-direction: row;
   }
-  
-  .tile, .sprite {
+
+  .tile,
+  .sprite {
+    height: $tile-height;
+    width: $tile-weight;
+  }
+
+  .sprite {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: $tile-height;
-    width: $tile-weight;
-  } 
+  }
+
 }
