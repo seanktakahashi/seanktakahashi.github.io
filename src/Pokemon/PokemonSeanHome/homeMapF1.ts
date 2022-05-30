@@ -1,4 +1,4 @@
-import { Door, PokemonMap, Sign } from "../../Pokemon/types";
+import { Door, PokemonMap, Sign } from "../types";
 import { Tile } from "../tiles/Tile";
 
 const nothing = Tile.nothing;
@@ -59,24 +59,32 @@ const upstairsS = Tile.homeUpstairsS;
 
 const doors: Door[] = [
   {
-    position: { i: 2, j: 1 }, // house door
+    position: { i: 9, j: 8 }, // front door
     naviateTo: '/',
+  },
+  {
+    position: { i: 9, j: 9 }, // front door
+    naviateTo: '/',
+  },
+  {
+    position: { i: 2, j: 8 }, // upstairs
+    naviateTo: '/pokemon/homeF2',
   },
 ];
 
 const signs: Sign[] = [
   {
-    position: { i: 7, j: 7 },
-    dialog: "Sean's house!"
+    position: { i: 4, j: 4 },
+    dialog: "Maybe I should subscribe to Hulu again. There isn't much to watch on TV without a subscription service"
   },
 ];
 
-export const homeMap: PokemonMap = {
+export const floor1: PokemonMap = {
   tiles: [
     [wallN, wallN, windowN, wallN, wallN, windowN, windowN, nothing, nothing, nothing, nothing],
     [fridgeN, sinkNW, sinkNE, displayNW, displayNE, windowS, windowS, upstairsNW, upstairsN, upstairsNE, wallN],
     [fridgeS, sinkSW, sinkSE, displaySW, displaySE, woodFloorDarkN, woodFloorDarkN, upstairsSW, upstairsS, upstairsSE, wallS],
-    [woodFloorDark, woodFloorDarkN, woodFloorDarkN, woodFloorDarkN, woodFloorDarkN, woodFloor, woodFloor, woodFloor, woodFloor, woodFloor, woodFloor],
+    [woodFloorDark, woodFloorDarkN, woodFloorDarkN, woodFloorDarkN, woodFloorDarkN, woodFloor, woodFloor, woodFloorDarkNE, woodFloorDarkN, woodFloorDarkN, woodFloorDarkN],
     [woodFloorDark, woodFloor, carpetNCabinetNW, carpetNCabinetNE, tvScreen, woodFloor, woodFloor, woodFloor, woodFloor, woodFloor, woodFloor],
     [woodFloorDark, carpetNW, carpetNCabinetSW, carpetNCabinetSE, carpetNTv, carpetN, carpetNE, woodFloor, woodFloor, woodFloor, woodFloor],
     [woodFloorDark, carpetW, carpetChairW, carpetTableNW, carpetTableNE, carpetChairE, carpetE, woodFloor, woodFloor, woodFloor, woodFloor],
@@ -85,6 +93,6 @@ export const homeMap: PokemonMap = {
     [nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothing, nothingDoor, nothingDoor, nothing],
   ],
   doors,
-  signs: [],
-  start: { i: 6, j: 8 } // in front of house
+  signs: signs,
+  start: { i: 8, j: 8 } // in front of house
 }

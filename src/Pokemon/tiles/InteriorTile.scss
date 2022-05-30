@@ -30,6 +30,11 @@
   background-size: 19200%;
 }
 
+.tile.home-wood-floor-light-se {
+  background-position: left -240px top -1410px;
+  background-size: 19200%;
+}
+
 // Doormat
 
 .tile.doormat-w {
@@ -43,6 +48,11 @@
 }
 
 // Carpet
+
+.tile.home-carpet {
+  background-position: left -270px top -1560px;
+  background-size: 19200%;
+}
 
 .tile.home-carpet-e {
   background-position: left -390px top -1080px;
@@ -154,7 +164,7 @@
   background-size: 19200%;
 }
 
-// Furniture
+// Downstairs Furniture
 .tile.home-fridge-s {
   background-position: left -240px top -1170px;
   background-size: 19200%;
@@ -202,6 +212,107 @@
 
 .tile.home-display-se {
   background-position: left -360px top -1170px;
+  background-size: 19200%;
+}
+
+// Upstairs Furniture
+.tile.home-bed-n {
+  background-position: left -360px top -1440px;
+  background-size: 19200%;
+}
+
+.tile.home-bed-nw {
+  background-position: left -330px top -1440px;
+  background-size: 19200%;
+}
+
+.tile.home-bed-ne {
+  background-position: left -390px top -1440px;
+  background-size: 19200%;
+}
+
+.tile.home-bed-s {
+  background-position: left -360px top -1470px;
+  background-size: 19200%;
+}
+
+.tile.home-bed-sw {
+  background-position: left -330px top -1470px;
+  background-size: 19200%;
+}
+
+.tile.home-bed-se {
+  background-position: left -390px top -1470px;
+  background-size: 19200%;
+}
+
+.tile.home-computer-desk-nw {
+  background-position: left -300px top -1260px;
+  background-size: 19200%;
+}
+
+.tile.home-computer-desk-ne {
+  background-position: left -360px top -1260px;
+  background-size: 19200%;
+}
+
+.tile.home-computer-desk-w {
+  background-position: left -300px top -1290px;
+  background-size: 19200%;
+}
+
+.tile.home-computer-desk-e {
+  background-position: left -330px top -1290px;
+  background-size: 19200%;
+}
+
+.tile.home-computer-desk-sw {
+  background-position: left -300px top -1320px;
+  background-size: 19200%;
+}
+
+.tile.home-computer-desk-se {
+  background-position: left -330px top -1320px;
+  background-size: 19200%;
+}
+
+.tile.home-map-wall-s {
+  background-position: left -390px top -1260px;
+  background-size: 19200%;
+}
+
+.tile.home-map-wall-n {
+  background-position: left -330px top -1260px;
+  background-size: 19200%;
+}
+
+.tile.home-game-cube-s {
+  background-position: left -420px top -1320px;
+  background-size: 19200%;
+}
+
+.tile.home-game-cube-n {
+  background-position: left -390px top -1320px;
+  background-size: 19200%;
+}
+
+.tile.home-tv-s {
+  background-position: left -390px top -1290px;
+  background-size: 19200%;
+}
+
+.tile.home-tv-n {
+  background-position: left -420px top -1260px;
+  background-size: 19200%;
+}
+
+.tile.home-wall-clock-s {
+  background-position: left -450px top -1110px;
+  background-size: 19200%;
+}
+
+.tile.home-wall-clock-n {
+  background-position: left -450px top -1080px;
   background-size: 19200%;
 }
 
@@ -253,5 +364,35 @@
 
 .tile.home-upstairs-s {
   background-position: left -270px top -1020px;
+  background-size: 19200%;
+}
+
+.tile.home-downstairs-ne {
+  background-position: left -390px top -990px;
+  background-size: 19200%;
+}
+
+.tile.home-downstairs-nw {
+  background-position: left -330px top -990px;
+  background-size: 19200%;
+}
+
+.tile.home-downstairs-n {
+  background-position: left -360px top -990px;
+  background-size: 19200%;
+}
+
+.tile.home-downstairs-se {
+  background-position: left -390px top -1020px;
+  background-size: 19200%;
+}
+
+.tile.home-downstairs-sw {
+  background-position: left -330px top -1020px;
+  background-size: 19200%;
+}
+
+.tile.home-downstairs-s {
+  background-position: left -360px top -1020px;
   background-size: 19200%;
 }

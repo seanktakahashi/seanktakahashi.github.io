@@ -3,14 +3,14 @@ import React, { useMemo } from 'react';
 import { Provider } from 'react-redux'
 import { createPokemonMapStore } from '../mapRedux/store'
 import PokemonMapDrawing from '../react/PokemonMapDrawing';
-import { homeMap } from './homeMap';
+import { floor2 } from './homeMapF2';
 import NavigationHelper from '../react/NavigationHelper';
 import Dialog from '../react/Dialog';
 
-export default function PokemonSeanHome() {
+export default function PokemonSeanHomeFloor2() {
   const store = useMemo(() => {
-    return createPokemonMapStore(homeMap);
-  }, [homeMap]);
+    return createPokemonMapStore(floor2);
+  }, [floor2]);
   return (
     <Provider store={store}>
       <div id="landing-container"
