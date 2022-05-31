@@ -1,5 +1,6 @@
-import { Door, PokemonMap, Sign } from "../types";
+import { MapId } from "../Map";
 import { Tile } from "../tiles/Tile";
+import { Direction, Door, PokemonMap, Sign } from "../types";
 
 const nothing = Tile.nothing;
 const nothingDoor = Tile.nothingDoor;
@@ -60,15 +61,15 @@ const upstairsS = Tile.homeUpstairsS;
 const doors: Door[] = [
   {
     position: { i: 9, j: 8 }, // front door
-    naviateTo: '/',
+    destination: MapId.landing,
   },
   {
     position: { i: 9, j: 9 }, // front door
-    naviateTo: '/',
+    destination: MapId.landing,
   },
   {
     position: { i: 2, j: 8 }, // upstairs
-    naviateTo: '/pokemon/homeF2',
+    destination: MapId.floor2,
   },
 ];
 
@@ -78,6 +79,16 @@ const signs: Sign[] = [
     dialog: "Maybe I should subscribe to Hulu again. There isn't much to watch on TV without a subscription service"
   },
 ];
+
+export const inFrontOfStairs = {
+  position: { i: 3, j: 8 },
+  direction: Direction.DOWN,
+}
+
+export const frontDoor = {
+  position: { i: 8, j: 8 },
+  direction: Direction.UP,
+}
 
 export const floor1: PokemonMap = {
   tiles: [
@@ -94,5 +105,11 @@ export const floor1: PokemonMap = {
   ],
   doors,
   signs: signs,
-  start: { i: 8, j: 8 } // in front of house
+  start: frontDoor,
+  background: undefined,
+}
+
+export const floor1FromUpstairs: PokemonMap = {
+  ...floor1,
+  start: inFrontOfStairs,
 }

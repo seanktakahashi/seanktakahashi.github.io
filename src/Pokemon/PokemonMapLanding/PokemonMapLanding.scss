@@ -4,7 +4,7 @@
 $tile-height: 30px;
 $tile-weight: 30px;
 
-#landing-container {
+#pokemon-page-container {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -17,7 +17,7 @@ $tile-weight: 30px;
   background-size: $tile-height $tile-weight;
 }
 
-#landing {
+#pokemon-page {
   position: relative;
   display: flex;
   flex-direction: column;

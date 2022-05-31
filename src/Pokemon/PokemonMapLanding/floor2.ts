@@ -1,5 +1,6 @@
-import { Door, PokemonMap, Sign } from "../types";
+import { Direction, Door, PokemonMap, Sign } from "../types";
 import { Tile } from "../tiles/Tile";
+import { MapId } from "../Map";
 
 const woodFloor = Tile.homeWoodFloor;
 const woodFloorDark = Tile.homeWoodFloorDark;
@@ -51,7 +52,7 @@ const wallClockN = Tile.homeWallClockN;
 const doors: Door[] = [
   {
     position: { i: 1, j: 7 }, // downstairs
-    naviateTo: '/pokemon/homeF1',
+    destination: MapId.floor1FromUpstairs,
   },
 ];
 
@@ -75,5 +76,9 @@ export const floor2: PokemonMap = {
   ],
   doors,
   signs: signs,
-  start: { i: 2, j: 7 } // in front of stairs
+  start: {
+    position: { i: 2, j: 7 }, // in front of stairs
+    direction: Direction.DOWN,
+  },
+  background: undefined,
 }

@@ -1,30 +1,21 @@
 import { combineReducers } from 'redux';
+import { getMap } from '../getMap';
+import { isMapId } from '../Map';
 import { Action, GlobalActions, SpriteActions } from './actions';
 import { emptyMapState, MapState, StoreState } from './states';
-import { Direction } from '../types';
-import { findDialog, findItem, moveSpriteState } from './utils/mapUtils';
-
-function setState<T, K extends keyof T>(state: T, newState: Pick<T, K>): T {
-  return Object.assign({}, state, newState);
-}
+import { fillOutMapState, findDialog, findItem, moveSpriteState } from './utils/mapUtils';
+import { setState } from './utils/utils';
 
 function movementReducer(state: MapState, action: Action): MapState {
   switch (action.type) {
     case SpriteActions.move.type:
       // It seems like this should throw a type error, action.payload is understood as any? not Direction
       // according to VSCode 
-      const newSpriteState = moveSpriteState(state.spriteState, state.geography, action.payload);
+      const newSpriteState = moveSpriteState(state, state.geography, action.payload);
       return setState(
         state,
         {
           spriteState: newSpriteState,
-        }
-      );
-    case GlobalActions.clearNavigateTo.type:
-      return setState(
-        state,
-        {
-          spriteState: moveSpriteState(state.spriteState, state.geography, Direction.DOWN),
         }
       );
     default:
@@ -35,11 +26,11 @@ function movementReducer(state: MapState, action: Action): MapState {
 function globalReducer(state: MapState, action: Action): MapState {
   switch (action.type) {
     case SpriteActions.move.type:
-      const navigateTo = findItem(state.spriteState.position, state.itemsState.doors)?.naviateTo;
+      const door = findItem(state.spriteState.position, state.itemsState.doors);
       return setState(
         state,
         {
-          globalState: setState(state.globalState, { navigateTo })
+          globalState: setState(state.globalState, { navigateTo: door?.destination })
         }
       );
     case SpriteActions.interact.type:
@@ -56,12 +47,19 @@ function globalReducer(state: MapState, action: Action): MapState {
         }
       );
     case GlobalActions.clearNavigateTo.type:
-      return setState(
-        state,
-        {
-          globalState: setState(state.globalState, { navigateTo: undefined })
-        }
-      );
+      const navigateTo = state.globalState.navigateTo;
+      if (navigateTo === undefined) {
+        return state;
+      } else if (isMapId(navigateTo)) {
+        return fillOutMapState(emptyMapState, getMap(navigateTo));
+      } else {
+        return setState(
+          state,
+          {
+            globalState: setState(state.globalState, { navigateTo: undefined })
+          }
+        );
+      }
     default:
       return state;
   }

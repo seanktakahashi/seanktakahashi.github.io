@@ -1,3 +1,4 @@
+import { MapId } from './Map';
 import { Tile } from './tiles/Tile';
 
 export enum Direction {
@@ -18,8 +19,10 @@ export function equalPosition(pos1: Position, pos2: Position) {
 
 export type Door = {
   position: Position,
-  naviateTo: string,
+  destination: MapId | WorldDestination,
 }
+
+type WorldDestination = string;
 
 export type Sign = {
   position: Position,
@@ -28,7 +31,11 @@ export type Sign = {
 
 export type PokemonMap = {
   tiles: Tile[][],
-  start: Position,
+  start: {
+    position: Position,
+    direction: Direction,
+  },
   doors: Door[],
   signs: Sign[],
+  background: Tile | undefined,
 }

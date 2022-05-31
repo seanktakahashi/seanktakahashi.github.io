@@ -1,5 +1,6 @@
-import { Door, PokemonMap, Sign } from "../../Pokemon/types";
+import { MapId } from "../Map";
 import { Tile } from "../tiles/Tile";
+import { Direction, Door, PokemonMap, Sign } from "../types";
 
 const houseNE = Tile.woodHouseNE;
 const houseNEE = Tile.woodHouseNEE;
@@ -45,7 +46,6 @@ const fenceW = Tile.fenceW;
 const fenceSE = Tile.fenceSE;
 const fenceSW = Tile.fenceSW;
 
-const marble = Tile.marble;
 const marbleNW = Tile.marbleNW;
 const marbleNE = Tile.marbleNE;
 const marbleN = Tile.marbleN;
@@ -54,10 +54,9 @@ const marbleSW = Tile.marbleSW;
 const marbleS = Tile.marbleS;
 const marbleE = Tile.marbleE;
 const marbleSE = Tile.marbleSE;
-const marbleInverseNW = Tile.marbleInverseNW;
 const marbleInverseNE = Tile.marbleInverseNE;
-const marbleInverseSW = Tile.marbleInverseSW;
 const marbleInverseSE = Tile.marbleInverseSE;
+const marbleInverseSW = Tile.marbleInverseSW;
 
 const water = Tile.water;
 const waterNW = Tile.waterNW;
@@ -79,11 +78,11 @@ const flowersRed = Tile.flowersRed;
 const doors: Door[] = [
   {
     position: { i: 7, j: 4 }, // house door
-    naviateTo: '/pokemon/homeF1',
+    destination: MapId.floor1,
   },
   {
-    position: { i: 2, j: 11 }, // cave door
-    naviateTo: '/pokemon/chess',
+    position: { i: 5, j: 11 }, // cave door
+    destination: '/pokemon/chess',
   }
 ];
 
@@ -105,8 +104,8 @@ export const landingPokemonMap: PokemonMap = {
     [grass, fenceW, grass, houseSWW, houseSW, houseSE, houseSEE, grass, fenceE, grass, grass, grass, grass, grass, grass],
     [grass, fenceW, grass, houseSSWW, houseSSW, houseSSE, houseSSEE, sign, fenceE, grass, grass, grass, grass, grass, grass],
     [grass, fenceW, grass, flowersRed, marbleNW, marbleNE, grass, grass, fenceE, grass, grass, grass, grass, grass, grass],
-    [grass, fenceW, grass, grass, marbleW, marbleInverseNE, marbleN, marbleNE, fenceE, marbleNW, marbleN, marbleN, marbleN, marbleNE, grass],
-    [grass, fenceW, grass, grass, marbleSW, marbleS, marbleInverseSW, marbleE, fenceE, marbleSW, marbleS, marbleS, marbleS, marbleSE, grass],
+    [grass, fenceW, grass, grass, marbleW, marbleInverseNE, marbleN, marbleN, marbleN, marbleN, marbleN, marbleN, marbleN, marbleNE, grass],
+    [grass, fenceW, grass, grass, marbleSW, marbleS, marbleInverseSW, marbleInverseSE, marbleS, marbleS, marbleS, marbleS, marbleS, marbleSE, grass],
     [grass, fenceW, tree2, grass, waterNW, waterNE, marbleW, marbleE, fenceE, grass, grass, grass, grass, grass, grass],
     [grass, fenceW, grass, grass, waterSW, waterSE, marbleSW, marbleSE, fenceE, grass, grass, grass, grass, rock1, grass],
     [grass, fenceSW, fenceS, fenceS, fenceS, fenceS, fenceS, fenceS, fenceSE, grass, weedSmall, grass, weedSmall, grass, grass],
@@ -118,5 +117,9 @@ export const landingPokemonMap: PokemonMap = {
   ],
   doors,
   signs,
-  start: { i: 8, j: 4 } // in front of house
+  start: {
+    position: { i: 8, j: 4 }, // in front of house
+    direction: Direction.DOWN,
+  },
+  background: grass,
 }

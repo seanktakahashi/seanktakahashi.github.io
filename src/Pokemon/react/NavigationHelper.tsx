@@ -1,9 +1,10 @@
-import './NavigationHelper.scss';
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectNavigate } from '../mapRedux/selectors';
+import { useNavigate } from 'react-router-dom';
+import { isMapId } from '../Map';
 import { GlobalActions } from '../mapRedux/actions';
+import { selectNavigate } from '../mapRedux/selectors';
+import './NavigationHelper.scss';
 
 export default function NavigationHelper() {
   const navigate = useNavigate();
@@ -13,10 +14,16 @@ export default function NavigationHelper() {
 
   useEffect(() => {
     if (navigateTo !== undefined) {
-      setTimeout(() => {
-        dispatch(GlobalActions.clearNavigateTo);
-        navigate(navigateTo);
-      }, 1000); // Equal to Fading Div
+      if (isMapId(navigateTo)) {
+        setTimeout(() => {
+          dispatch(GlobalActions.clearNavigateTo);
+        }, 1000); // Equal to Fading Div
+      } else {
+        setTimeout(() => {
+          dispatch(GlobalActions.clearNavigateTo);
+          navigate(navigateTo);
+        }, 1000); // Equal to Fading Div
+      }
     }
   }, [navigateTo]);
   return (

@@ -1,5 +1,5 @@
 import { Tile } from "../tiles/Tile";
-import { PokemonMap } from "../types";
+import { Direction, PokemonMap } from "../types";
 
 const mountainNW = Tile.mountainNW;
 const mountainN = Tile.mountainN;
@@ -29,7 +29,7 @@ export const pageLayoutMap: PokemonMap = {
   doors: [
     {
       position: { i: 3, j: 1 }, // cave door
-      naviateTo: '/',
+      destination: '/',
     },
   ],
   signs: [
@@ -38,5 +38,9 @@ export const pageLayoutMap: PokemonMap = {
       dialog: "Welcome to the world of POKéMON",
     },
   ],
-  start: { i: 4, j: 1 }, // in front of cave door
+  start: {
+    position: { i: 4, j: 1 }, // in front of cave door
+    direction: Direction.DOWN,
+  },
+  background: undefined,
 }

@@ -1,8 +1,9 @@
+import { MapId } from '../Map';
 import { Tile } from '../tiles/Tile';
 import { Direction, Door, Position, Sign } from '../types';
 
 export interface GlobalState {
-  navigateTo: string | undefined;
+  navigateTo: MapId | string | undefined;
   dialog: string | undefined;
 }
 
@@ -21,19 +22,18 @@ export interface MapState {
   spriteState: SpriteState;
   itemsState: ItemState;
   geography: Tile[][];
+  background: Tile | undefined;
 }
 
 export interface StoreState {
   mapState: MapState
 }
 
-export const emptyGlobalState = {
-  navigateTo: undefined,
-  dialog: undefined
-}
-
 export const emptyMapState: MapState = {
-  globalState: emptyGlobalState,
+  globalState: {
+    navigateTo: undefined,
+    dialog: undefined
+  },
   spriteState: {
     position: { i: 0, j: 0 },
     facing: Direction.DOWN,
@@ -42,5 +42,6 @@ export const emptyMapState: MapState = {
     doors: [],
     signs: [],
   },
-  geography: Array(Array(Tile.grass))
+  geography: Array(Array(Tile.grass)),
+  background: undefined,
 };

@@ -1,6 +1,25 @@
 import { isTileWalkable, Tile } from '../../tiles/Tile';
-import { Direction, Door, equalPosition, Position, Sign } from '../../types';
-import { SpriteState } from '../states';
+import { Direction, Door, equalPosition, PokemonMap, Position, Sign } from '../../types';
+import { GlobalState, MapState, SpriteState } from '../states';
+import { setState } from './utils';
+
+export function fillOutMapState(state: MapState, map: PokemonMap): MapState {
+  return setState(
+    state,
+    {
+      itemsState: {
+        doors: map.doors,
+        signs: map.signs,
+      },
+      spriteState: {
+        position: map.start.position,
+        facing: map.start.direction,
+      },
+      geography: map.tiles,
+      background: map.background,
+    }
+  );
+}
 
 export function findItem<T extends Door | Sign>(position: Position, items: T[]): T | undefined {
   return items.find(item => equalPosition(position, item.position));
@@ -36,12 +55,16 @@ export function stepInDirection(position: Position, direction: Direction): Posit
   }
 }
 
+function spriteCanMove(globalState: GlobalState): boolean {
+  return globalState.navigateTo === undefined;
+}
 
-export function moveSpriteState(spriteState: SpriteState, map: Tile[][], direction: Direction): SpriteState {
-  let newPosition = stepInDirection(spriteState.position, direction);
+export function moveSpriteState(state: MapState, map: Tile[][], direction: Direction): SpriteState {
+  let newPosition = stepInDirection(state.spriteState.position, direction);
   const walkable = spaceIsWalkable(map, newPosition);
+  const canMove = spriteCanMove(state.globalState);
   return {
-    position: walkable ? newPosition : spriteState.position,
+    position: walkable && canMove ? newPosition : state.spriteState.position,
     facing: direction
   }
 }
